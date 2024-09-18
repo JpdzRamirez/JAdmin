@@ -1,0 +1,36 @@
+/*     Card Annoucement    */
+.card-annoucement .card-body {
+    padding: 50px 25px;
+}
+.card-annoucement .card-opening {
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+}
+.card-annoucement .card-desc {
+    padding: 15px 0;
+    font-size: 16px;
+    line-height: 1.65;
+    font-weight: 300;
+}
+.card-annoucement.card-primary .btn-light {
+    color: #1572e8 !important;
+}
+.card-annoucement.card-success .btn-light {
+    color: #31ce36 !important;
+}
+.card-annoucement.card-secondary .btn-light {
+    color: #6861ce !important;
+}
+.card-annoucement.card-black .btn-light {
+    color: #1a2035 !important;
+}
+.card-annoucement.card-info .btn-light {
+    color: #48abf7 !important;
+}
+.card-annoucement.card-danger .btn-light {
+    color: #f25961 !important;
+}
+.card-annoucement.card-warning .btn-light {
+    color: #ffad46 !important;
+}
