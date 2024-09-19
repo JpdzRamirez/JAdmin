@@ -29,7 +29,17 @@ class FortifyServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      */
     public function boot(): void
-    {
+    {   
+        //Authenticate views
+        Fortify::loginView(function () {
+            return view('auth.authenticate'); // Cambiar a la nueva vista
+        });
+    
+        Fortify::registerView(function () {
+            return view('auth.authenticate'); // Cambiar a la nueva vista si también quieres manejar el registro aquí
+        });
+
+        //CRUD Users
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
@@ -49,35 +59,32 @@ class FortifyServiceProvider extends ServiceProvider
 
         // Autenticación personalizada con redirección en función del rol
         Fortify::authenticateUsing(function (Request $request) {
-            $user = Auth::attempt([
-                'email' => $request->email,
-                'password' => $request->password,
-            ]);
+            // Verifica las credenciales
+            if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+                $user = Auth::user();
 
-            if ($user) {
-                $user = Auth::user(); // Obtener usuario autenticado
-
-                // Redirigir según el rol del usuario
+                // Verifica el rol del usuario y redirige
                 if ($user->role == 1) {
-                    return Redirect::to('/admin/dashboard');
+                    return redirect('/admin/dashboard');
                 } elseif ($user->role == 2) {
-                    return Redirect::to('/casher/dashboard');
+                    return redirect('/casher/dashboard');
                 } elseif ($user->role == 3) {
-                    return Redirect::to('/waiter/dashboard');
+                    return redirect('/waiter/dashboard');
                 } elseif ($user->role == 4) {
-                    return Redirect::to('/customer/dashboard');
+                    return redirect('/customer/dashboard');
                 }
 
-                // Ejemplo: Verificar otro campo, como estado activo
+                // Verifica si el usuario está activo
                 if (!$user->is_active) {
                     Auth::logout();
-                    return Redirect::to('/account-suspended');
+                    return redirect('/account-suspended')->withErrors(['account' => 'Tu cuenta ha sido suspendida.']);
                 }
 
-                return $user; // Autenticación exitosa, continuar proceso
+                return $user; // Autenticación exitosa
             }
 
-            return null; // Retorna null en caso de autenticación fallida
+            // Autenticación fallida, devolver mensaje de error
+            return redirect()->back()->withErrors(['login' => 'Las credenciales proporcionadas no coinciden con nuestros registros.']);
         });
     }
 }

@@ -1,252 +1,497 @@
-
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
-
 * {
-	box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-	background: #f6f5f7;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	font-family: 'Montserrat', sans-serif;
-	height: 100vh;
-	margin: -20px 0 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Montserrat", sans-serif;
+    height: 100vh;
+    margin: -20px 0 50px;
+	overflow: hidden;
 }
 
 h1 {
-	font-weight: bold;
-	margin: 0;
+    font-weight: bold;
+    margin: 0;
 }
 
 h2 {
-	text-align: center;
+    text-align: center;
 }
 
 p {
-	font-size: 14px;
-	font-weight: 100;
-	line-height: 20px;
-	letter-spacing: 0.5px;
-	margin: 20px 0 30px;
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    margin: 20px 0 30px;
 }
 
 span {
-	font-size: 12px;
+    font-size: 12px;
 }
 
 a {
-	color: #333;
-	font-size: 14px;
-	text-decoration: none;
-	margin: 15px 0;
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    margin: 15px 0;
 }
 
 button {
-	border-radius: 20px;
-	border: 1px solid #FF4B2B;
-	background-color: #FF4B2B;
-	color: #FFFFFF;
-	font-size: 12px;
-	font-weight: bold;
-	padding: 12px 45px;
-	letter-spacing: 1px;
-	text-transform: uppercase;
-	transition: transform 80ms ease-in;
+    border-radius: 20px;
+    border: 1px solid #6861ce;
+    background-color: #6861ce;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
 }
 
 button:active {
-	transform: scale(0.95);
+    transform: scale(0.95);
 }
 
 button:focus {
-	outline: none;
+    outline: none;
 }
 
 button.ghost {
-	background-color: transparent;
-	border-color: #FFFFFF;
+    background-color: transparent;
+    border-color: #ffffff;
+	transition: 0.3s ease-in-out;
+}
+button.ghost:hover {
+    background-color: #ffffff;
+    color:#333;
 }
 
 form {
-	background-color: #FFFFFF;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	padding: 0 50px;
-	height: 100%;
-	text-align: center;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    text-align: center;
 }
 
 input {
-	background-color: #eee;
-	border: none;
-	padding: 12px 15px;
-	margin: 8px 0;
-	width: 100%;
+    background-color: #eee;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
 }
-
+/*Check Button*/
+.input-checkbox{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    padding: 1em;
+    align-items: center;
+}
+.checkbox {
+    --border-default: #bbbbc1;
+    --border-hover: #9898a3;
+    --active: #6861ce;
+    --active-tick: #fff;
+    display: block;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+}
+.checkbox svg {
+    display: block;
+    position: absolute;
+}
+.checkbox input {
+    display: block;
+    outline: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 36% / 36%;
+    box-shadow: inset 0 0 0 1.5px var(--border, var(--border-default));
+    background: var(--background, transparent);
+    transition: background 0.25s linear, box-shadow 0.25s linear;
+}
+.checkbox input + svg {
+    width: 21px;
+    height: 18px;
+    left: 0;
+    top: 0;
+    color: #fff;
+}
+.checkbox input + svg .tick {
+    stroke-dasharray: 20;
+    stroke-dashoffset: var(--stroke-dashoffset, 20);
+    transition: stroke-dashoffset 0.2s;
+}
+.checkbox input + svg .tick.mask {
+    stroke: var(--active-tick);
+}
+.checkbox input + svg + svg {
+    width: 11px;
+    height: 11px;
+    fill: none;
+    stroke: var(--active);
+    stroke-width: 1.25;
+    stroke-linecap: round;
+    top: -6px;
+    right: -10px;
+    stroke-dasharray: 4.5px;
+    stroke-dashoffset: 13.5px;
+    pointer-events: none;
+    animation: var(--animation, none) 0.2s ease 0.175s;
+}
+.checkbox input:checked {
+    --background: var(--active);
+    --border: var(--active);
+}
+.checkbox input:checked + svg {
+    --stroke-dashoffset: 0;
+}
+.checkbox input:checked + svg + svg {
+    --animation: check;
+}
+.checkbox:hover input:not(:checked) {
+    --border: var(--border-hover);
+}
+@keyframes check {
+    100% {
+        stroke-dashoffset: 4.5px;
+   }
+}
+.bg-authenticate{
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: fixed;
+	filter:blur(3px);
+}
 .container {
-	background-color: #fff;
-	border-radius: 10px;
-  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
-			0 10px 10px rgba(0,0,0,0.22);
-	position: relative;
-	overflow: hidden;
-	width: 768px;
-	max-width: 100%;
-	min-height: 480px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 640px;
 }
-
+.terms{
+    color:#6861ce;
+}
+.remember{
+    color:#ddd;
+}
+.error{
+    color: red;
+    font-size: 8px;
+}
 .form-container {
-	position: absolute;
-	top: 0;
-	height: 100%;
-	transition: all 0.6s ease-in-out;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
 }
 
 .sign-in-container {
-	left: 0;
-	width: 50%;
-	z-index: 2;
+    left: 0;
+    width: 50%;
+    z-index: 2;
 }
 
 .container.right-panel-active .sign-in-container {
-	transform: translateX(100%);
+    transform: translateX(100%);
 }
 
 .sign-up-container {
-	left: 0;
-	width: 50%;
-	opacity: 0;
-	z-index: 1;
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
 }
 
 .container.right-panel-active .sign-up-container {
-	transform: translateX(100%);
-	opacity: 1;
-	z-index: 5;
-	animation: show 0.6s;
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: show 0.6s;
 }
 
 @keyframes show {
-	0%, 49.99% {
-		opacity: 0;
-		z-index: 1;
-	}
-	
-	50%, 100% {
-		opacity: 1;
-		z-index: 5;
-	}
+    0%,
+    49.99% {
+        opacity: 0;
+        z-index: 1;
+    }
+
+    50%,
+    100% {
+        opacity: 1;
+        z-index: 5;
+    }
 }
 
 .overlay-container {
-	position: absolute;
-	top: 0;
-	left: 50%;
-	width: 50%;
-	height: 100%;
-	overflow: hidden;
-	transition: transform 0.6s ease-in-out;
-	z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100;
 }
 
-.container.right-panel-active .overlay-container{
-	transform: translateX(-100%);
+.container.right-panel-active .overlay-container {
+    transform: translateX(-100%);
 }
 
 .overlay {
-	background: #FF416C;
-	background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-	background: linear-gradient(to right, #FF4B2B, #FF416C);
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: 0 0;
-	color: #FFFFFF;
-	position: relative;
-	left: -100%;
-	height: 100%;
-	width: 200%;
-  	transform: translateX(0);
-	transition: transform 0.6s ease-in-out;
+	background-color: #6861ce;
+	background-image: linear-gradient(225deg, #6861ce 0%, #784BA0 35%, #393e50 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+    color: #ffffff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
 }
 
 .container.right-panel-active .overlay {
-  	transform: translateX(50%);
+    transform: translateX(50%);
 }
 
 .overlay-panel {
-	position: absolute;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	padding: 0 40px;
-	text-align: center;
-	top: 0;
-	height: 100%;
-	width: 50%;
-	transform: translateX(0);
-	transition: transform 0.6s ease-in-out;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
 }
 
 .overlay-left {
-	transform: translateX(-20%);
+    transform: translateX(-20%);
 }
 
 .container.right-panel-active .overlay-left {
-	transform: translateX(0);
+    transform: translateX(0);
 }
 
 .overlay-right {
-	right: 0;
-	transform: translateX(0);
+    right: 0;
+    transform: translateX(0);
 }
 
 .container.right-panel-active .overlay-right {
-	transform: translateX(20%);
+    transform: translateX(20%);
 }
 
 .social-container {
-	margin: 20px 0;
+    margin: 20px 0;
 }
 
 .social-container a {
-	border: 1px solid #DDDDDD;
-	border-radius: 50%;
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
-	margin: 0 5px;
-	height: 40px;
-	width: 40px;
+    border: 1px solid #dddddd;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    height: 40px;
+    width: 40px;
+    transition: 0.3s ease-in-out;
+}
+.social-container a:hover {
+    background-color: #6861ce;
+    color: #ffffff;
 }
 
-footer {
-    background-color: #222;
-    color: #fff;
-    font-size: 14px;
-    bottom: 0;
-    position: fixed;
-    left: 0;
-    right: 0;
-    text-align: center;
-    z-index: 999;
+
+/*ICON SECTION*/
+/*!
+ * Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ * Copyright 2024 Fonticons, Inc.
+ */
+.fa {
+    font-family: var(--fa-style-family, "Font Awesome 6 Free");
+    font-weight: var(--fa-style, 900);
 }
 
-footer p {
-    margin: 10px 0;
+.fa-solid,
+.fa-regular,
+.fa-brands,
+.fas,
+.far,
+.fab,
+.fa-sharp-solid,
+.fa-classic,
+.fa {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: var(--fa-display, inline-block);
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1;
+    text-rendering: auto;
 }
 
-footer i {
-    color: red;
+.fas,
+.fa-classic,
+.fa-solid,
+.far,
+.fa-regular {
+    font-family: "Font Awesome 6 Free";
 }
 
-footer a {
-    color: #3c97bf;
-    text-decoration: none;
+.fab,
+.fa-brands {
+    font-family: "Font Awesome 6 Brands";
+}
+.fas,
+.fa-solid {
+    font-weight: 900;
+}
+.fab,
+.fa-brands {
+    font-weight: 400;
+}
+.far,
+.fa-regular {
+    font-weight: 400;
+}
+
+.fa-facebook-f:before {
+    content: "\f39e";
+}
+
+.fa-google-plus-g:before {
+    content: "\f0d5";
+}
+.fa-github:before {
+	content: "\f09b"; 
+}
+.fa-arrow-right-to-bracket::before {
+	content: "\f090"; 
+}
+.fa-user-plus::before {
+	content: "\f234"; 
+}
+
+@font-face {
+    font-family: "Font Awesome 6 Brands";
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+    src: url("../fonts/fontawesome-6/fa-brands-400.woff2") format("woff2"),
+        url("../fonts/fontawesome-6/fa-brands-400.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Font Awesome 6 Free";
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+    src: url("../fonts/fontawesome-6/fa-regular-400.woff2") format("woff2"),
+        url("../fonts/fontawesome-6/fa-regular-400.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Font Awesome 6 Free";
+    font-style: normal;
+    font-weight: 900;
+    font-display: block;
+    src: url("../fonts/fontawesome-6/fa-solid-900.woff2") format("woff2"),
+        url("../fonts/fontawesome-6/fa-solid-900.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Font Awesome 5 Brands";
+    font-display: block;
+    font-weight: 400;
+    src: url("../fonts/fontawesome-6/fa-brands-400.woff2") format("woff2"),
+        url("../fonts/fontawesome-6/fa-brands-400.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Font Awesome 5 Free";
+    font-display: block;
+    font-weight: 900;
+    src: url("../fonts/fontawesome-6/fa-solid-900.woff2") format("woff2"),
+        url("../fonts/fontawesome-6/fa-solid-900.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Font Awesome 5 Free";
+    font-display: block;
+    font-weight: 400;
+    src: url("../fonts/fontawesome-6/fa-regular-400.woff2") format("woff2"),
+        url("../fonts/fontawesome-6/fa-regular-400.ttf") format("truetype");
+}
+@font-face {
+    font-family: "FontAwesome";
+    font-display: block;
+    src: url("../fonts/fontawesome-6/fa-solid-900.woff2") format("woff2"),
+        url("../fonts/fontawesome-6/fa-solid-900.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "FontAwesome";
+    font-display: block;
+    src: url("../fonts/fontawesome-6/fa-brands-400.woff2") format("woff2"),
+        url("../fonts/fontawesome-6/fa-brands-400.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "FontAwesome";
+    font-display: block;
+    src: url("../fonts/fontawesome-6/fa-regular-400.woff2") format("woff2"),
+        url("../fonts/fontawesome-6/fa-regular-400.ttf") format("truetype");
+    unicode-range: U+F003, U+F006, U+F014, U+F016-F017, U+F01A-F01B, U+F01D,
+        U+F022, U+F03E, U+F044, U+F046, U+F05C-F05D, U+F06E, U+F070, U+F087-F088,
+        U+F08A, U+F094, U+F096-F097, U+F09D, U+F0A0, U+F0A2, U+F0A4-F0A7, U+F0C5,
+        U+F0C7, U+F0E5-F0E6, U+F0EB, U+F0F6-F0F8, U+F10C, U+F114-F115,
+        U+F118-F11A, U+F11C-F11D, U+F133, U+F147, U+F14E, U+F150-F152,
+        U+F185-F186, U+F18E, U+F190-F192, U+F196, U+F1C1-F1C9, U+F1D9, U+F1DB,
+        U+F1E3, U+F1EA, U+F1F7, U+F1F9, U+F20A, U+F247-F248, U+F24A, U+F24D,
+        U+F255-F25B, U+F25D, U+F271-F274, U+F278, U+F27B, U+F28C, U+F28E, U+F29C,
+        U+F2B5, U+F2B7, U+F2BA, U+F2BC, U+F2BE, U+F2C0-F2C1, U+F2C3, U+F2D0,
+        U+F2D2, U+F2D4, U+F2DC;
+}
+
+@font-face {
+    font-family: "FontAwesome";
+    font-display: block;
+    src: url("../fonts/fontawesome-6/fa-v4compatibility.woff2") format("woff2"),
+        url("../fonts/fontawesome-6/fa-v4compatibility.ttf") format("truetype");
+    unicode-range: U+F041, U+F047, U+F065-F066, U+F07D-F07E, U+F080, U+F08B,
+        U+F08E, U+F090, U+F09A, U+F0AC, U+F0AE, U+F0B2, U+F0D0, U+F0D6, U+F0E4,
+        U+F0EC, U+F10A-F10B, U+F123, U+F13E, U+F148-F149, U+F14C, U+F156, U+F15E,
+        U+F160-F161, U+F163, U+F175-F178, U+F195, U+F1F8, U+F219, U+F27A;
 }

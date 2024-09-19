@@ -19,11 +19,10 @@
         @livewireStyles
     </head>
     <body>
-       
+        @stack('background')
         <div class="container" id="container">
             {{ $slot }}
         </div>
-
         @livewireScripts
         @stack('guestScripts')
     </body>

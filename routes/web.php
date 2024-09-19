@@ -2,11 +2,37 @@
 
 use Illuminate\Support\Facades\Route;
 
+use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
+use Laravel\Fortify\Http\Controllers\RegisteredUserController;
+
 // Ruta de bienvenida
 Route::get('/', function () {
     return view('welcome');
 });
 
+// Ruta para mostrar el formulario de login
+Route::get('/authenticate', [AuthenticatedSessionController::class, 'create'])
+    ->middleware(['guest'])
+    ->name('login'); // Cambia la ruta /login por /authenticate
+
+// Ruta para procesar la solicitud de login
+Route::post('/authenticate', [AuthenticatedSessionController::class, 'store'])
+    ->middleware(['guest'])
+    ->name('login.attempt');
+
+// Ruta para mostrar el formulario de registro
+Route::get('/authenticate/register', [RegisteredUserController::class, 'create'])
+    ->middleware(['guest'])
+    ->name('register'); // Cambia la ruta /register por /authenticate/register
+
+// Ruta para procesar la solicitud de registro
+Route::post('/authenticate/register', [RegisteredUserController::class, 'store'])
+    ->middleware(['guest'])
+    ->name('register.attempt');
+
+Route::redirect('/login', '/authenticate');
+Route::redirect('/register', '/authenticate');
+    
 // Rutas para el dashboard de usuarios autenticados
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
 
