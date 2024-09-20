@@ -75,7 +75,7 @@ class FortifyServiceProvider extends ServiceProvider
                 }
 
                 // Verifica si el usuario está activo
-                if (!$user->is_active) {
+                if (!$user->active=1) {
                     Auth::logout();
                     return redirect('/account-suspended')->withErrors(['account' => 'Tu cuenta ha sido suspendida.']);
                 }

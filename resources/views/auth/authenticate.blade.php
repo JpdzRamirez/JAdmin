@@ -7,7 +7,7 @@
     @endpush
     
         <div class="form-container sign-up-container">
-            <form method="POST" action="{{ route('register.attempt') }}">
+            <form method="POST" class="form-wrapper" action="{{ route('register.attempt') }}">
                 @csrf
                 <h1>{{ __('auth.signup-title') }}</h1>
                 <div class="social-container">
@@ -31,15 +31,68 @@
                     <div class="error">{{ $message }}</div>
                 @enderror
                 
-                <input type="password" placeholder="Password" name="password" required autocomplete="new-password" />
-                @error('password')
-                    <div class="error">{{ $message }}</div>
-                @enderror
-                
-                <input type="password" placeholder="Confirm Password" name="password_confirmation" required autocomplete="new-password" />
-                @error('password_confirmation')
-                    <div class="error">{{ $message }}</div>
-                @enderror
+                <div class="password-group">
+                    <input type="password" class="check-password" placeholder="Password" name="password" required autocomplete="new-password" />
+                    @error('password')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
+                    <div class="password-validator up">
+                        {{-- <p>Password must contains</p>
+                        <ul class="requirement-list">
+                          <li>
+                            <i class="fa-solid fa-xmark"></i>
+                            <span>At least 8 characters length</span>
+                          </li>
+                          <li>
+                            <i class="fa-solid fa-xmark"></i>
+                            <span>At least 1 number (0...9)</span>
+                          </li>
+                          <li>
+                            <i class="fa-solid fa-xmark"></i>
+                            <span>At least 1 lowercase letter (a...z)</span>
+                          </li>
+                          <li>
+                            <i class="fa-solid fa-xmark"></i>
+                            <span>At least 1 special symbol (!...$)</span>
+                          </li>
+                          <li>
+                            <i class="fa-solid fa-xmark"></i>
+                            <span>At least 1 uppercase letter (A...Z)</span>
+                          </li>
+                        </ul> --}}
+                    </div>
+                </div>
+                <div class="password-group">
+                    <input type="password" class="check-password" placeholder="Confirm Password" name="password_confirmation" required autocomplete="new-password" />
+                    @error('password_confirmation')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
+                    <div class="password-validator down">
+                        {{-- <p>Password must contains</p>
+                        <ul class="requirement-list">
+                          <li>
+                            <i class="fa-solid fa-xmark"></i>
+                            <span>At least 8 characters length</span>
+                          </li>
+                          <li>
+                            <i class="fa-solid fa-xmark"></i>
+                            <span>At least 1 number (0...9)</span>
+                          </li>
+                          <li>
+                            <i class="fa-solid fa-xmark"></i>
+                            <span>At least 1 lowercase letter (a...z)</span>
+                          </li>
+                          <li>
+                            <i class="fa-solid fa-xmark"></i>
+                            <span>At least 1 special symbol (!...$)</span>
+                          </li>
+                          <li>
+                            <i class="fa-solid fa-xmark"></i>
+                            <span>At least 1 uppercase letter (A...Z)</span>
+                          </li>
+                        </ul> --}}
+                    </div>
+                </div>
                 @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                     <div class="input-checkbox">
                         <label for="terms" class="checkbox">
@@ -140,6 +193,16 @@
     
 
     @push('guestScripts')
+        <script>
+            const passwordRequirements = {
+                minLength: "{{ __('validation.custom.password.minjs') }}",
+                number: "{{ __('validation.custom.password.number') }}",
+                lowercase: "{{ __('validation.custom.password.lowercase') }}",
+                special: "{{ __('validation.custom.password.special') }}",
+                uppercase: "{{ __('validation.custom.password.uppercase') }}"
+            };
+        </script>
+        <script src="{{asset('assets/js/passwordChecker.js')}}"></script>
         <script>
             const signUpButton = document.getElementById('signUp');
             const signInButton = document.getElementById('signIn');

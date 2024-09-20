@@ -3,6 +3,9 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
+
+use App\Rules\PasswordRule;
+
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -22,15 +25,12 @@ class CreateNewUser implements CreatesNewUsers
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255', 'regex:/^[\pL\s]+$/u'], // Letras y espacios
             'lastname' => ['required', 'string', 'max:255', 'regex:/^[\pL\s]+$/u'], // Letras y espacios
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'], // Email único
             'password' => [
                 'required',
                 'string',
                 'min:8', // mínimo de 8 caracteres
-                'regex:/[a-z]/', // al menos una minúscula
-                'regex:/[A-Z]/', // al menos una mayúscula
-                'regex:/[0-9]/', // al menos un número
-                'regex:/[@$!%*?&#]/', // al menos un carácter especial
+                new PasswordRule(),
                 'confirmed', // debe coincidir con el campo de confirmación
             ],
             'password_confirmation' => ['required', 'same:password'],

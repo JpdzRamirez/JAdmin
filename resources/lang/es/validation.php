@@ -88,47 +88,42 @@ return [
     |
     */
     'custom' => [
-        'identificacion' => [
-            'regex' => 'El campo identificacion solo debe contener numeros.',
-            'max' => 'El campo identificacion no puede exceder los 20 caracteres.',
+        'name' => [
+            'required' => 'El campo :attribute es obligatorio.',
+            'string'=>'El campo :attribute solo admite caracteres',
+            'max' => 'El campo :attribute no puede exceder los :max caracteres.',
+            'regex' => 'El campo :attribute no admite numeros.',
         ],
-        'nombres' => [
-            'required' => 'El campo nombres es obligatorio.',
-            'max' => 'El campo nombres no puede exceder los 125 caracteres.',
+        'lastname' => [
+            'required' => 'El campo :attribute es obligatorio.',
+            'string'=>'El campo :attribute solo admite caracteres.',
+            'max' => 'El campo :attribute no puede exceder los :max caracteres.',
+            'regex' => 'El campo :attribute no admite numeros.',
         ],
-        'apellidos' => [
-            'required' => 'El campo apellidos es obligatorio.',
-            'max' => 'El campo apellidos no puede exceder los 125 caracteres.',
+        'password' => [
+            'required' => 'El campo :attribute es obligatorio.',
+            'min' => 'El campo :attribute debe tener mínimo :min caracteres.',
+            'minjs'=> 'Al menos 8 caracteres de longitud',
+            'confirmed' => 'Las contraseñas deben coincidir.',
+            'lowercase' => 'Al menos 1 letra minúscula (a...z)',
+            'number' => 'Al menos 1 número (0...9)',
+            'special' => 'Al menos 1 símbolo especial (!...$)',
+            'uppercase' => 'Al menos 1 letra mayúscula (A...Z)',
         ],
-        'affe' => [
-            'required' => 'El campo affe es obligatorio.',
-            'max' => 'El campo affe no puede exceder los 15 caracteres.',
+        'password_confirmation' => [
+            'required' => 'El campo de confirmación de contraseña es obligatorio.',
+            'same' => 'La confirmación de contraseña no coincide con la contraseña.',
         ],
-        'solicitado' => [
-            'required' => 'El campo solicitado es obligatorio.',
-            'max' => 'El campo solicitado no puede exceder los 20 caracteres.',
+        'terms' => [
+            'accepted' => 'Debes aceptar los términos y condiciones.',
+            'required' => 'Es obligatorio aceptar los términos y condiciones.',
         ],
-        'autorizado' => [
-            'required' => 'El campo autorizado es obligatorio.',
-            'max' => 'El campo autorizado no puede exceder los 20 caracteres.',
-        ],
-        'celulares' => [
-            'required' => 'El campo celulares es obligatorio.',
-            'regex' => 'El campo identificacion solo debe contener numeros.',
-            'min' => 'El campo celulares no puede ser inferior a 10 caracteres.',
-            'max' => 'El campo celulares no puede exceder los 50 caracteres.',
-        ],
-        'direccion' => [
-            'required' => 'El campo direccion es obligatorio.',
-            'max' => 'El campo direccion no puede exceder los 250 caracteres.',
-        ],
-        'barrio' => [
-            'required' => 'El campo barrio es obligatorio.',
-            'max' => 'El campo barrio no puede exceder los 120 caracteres.',
-        ],
-        'municipio' => [
-            'required' => 'El campo municipio es obligatorio.',
-            'in' => 'El campo municipio debe ser seleccionado de la lista.',
+        'email' => [
+            'required' => 'El campo :attribute es obligatorio.',
+            'string' => 'El :attribute debe ser una cadena de texto.',
+            'email' => 'El formato del :attribute es inválido.',
+            'max' => 'El :attribute no debe exceder :max caracteres.',
+            'unique' => 'Este :attribute ya está en uso.',
         ],
     ],
     /*

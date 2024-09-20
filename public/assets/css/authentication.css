@@ -10,7 +10,7 @@ body {
     font-family: "Montserrat", sans-serif;
     height: 100vh;
     margin: -20px 0 50px;
-	overflow: hidden;
+    overflow: hidden;
 }
 
 h1 {
@@ -65,11 +65,12 @@ button:focus {
 button.ghost {
     background-color: transparent;
     border-color: #ffffff;
-	transition: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
 }
+
 button.ghost:hover {
     background-color: #ffffff;
-    color:#333;
+    color: #333;
 }
 
 form {
@@ -90,14 +91,16 @@ input {
     margin: 8px 0;
     width: 100%;
 }
+
 /*Check Button*/
-.input-checkbox{
+.input-checkbox {
     display: flex;
     flex-direction: row;
     gap: 1em;
     padding: 1em;
     align-items: center;
 }
+
 .checkbox {
     --border-default: #bbbbc1;
     --border-hover: #9898a3;
@@ -110,10 +113,12 @@ input {
     position: relative;
     -webkit-tap-highlight-color: transparent;
 }
+
 .checkbox svg {
     display: block;
     position: absolute;
 }
+
 .checkbox input {
     display: block;
     outline: none;
@@ -128,22 +133,26 @@ input {
     background: var(--background, transparent);
     transition: background 0.25s linear, box-shadow 0.25s linear;
 }
-.checkbox input + svg {
+
+.checkbox input+svg {
     width: 21px;
     height: 18px;
     left: 0;
     top: 0;
     color: #fff;
 }
-.checkbox input + svg .tick {
+
+.checkbox input+svg .tick {
     stroke-dasharray: 20;
     stroke-dashoffset: var(--stroke-dashoffset, 20);
     transition: stroke-dashoffset 0.2s;
 }
-.checkbox input + svg .tick.mask {
+
+.checkbox input+svg .tick.mask {
     stroke: var(--active-tick);
 }
-.checkbox input + svg + svg {
+
+.checkbox input+svg+svg {
     width: 11px;
     height: 11px;
     fill: none;
@@ -157,30 +166,138 @@ input {
     pointer-events: none;
     animation: var(--animation, none) 0.2s ease 0.175s;
 }
+
 .checkbox input:checked {
     --background: var(--active);
     --border: var(--active);
 }
-.checkbox input:checked + svg {
+
+.checkbox input:checked+svg {
     --stroke-dashoffset: 0;
 }
-.checkbox input:checked + svg + svg {
+
+.checkbox input:checked+svg+svg {
     --animation: check;
 }
+
 .checkbox:hover input:not(:checked) {
     --border: var(--border-hover);
 }
+
 @keyframes check {
     100% {
         stroke-dashoffset: 4.5px;
-   }
+    }
 }
-.bg-authenticate{
-	background-size: cover;
-	background-repeat: no-repeat;
-	position: fixed;
-	filter:blur(3px);
+
+/*PASSWORD VALIDATOR*/
+.password-group {
+    position: relative;
+    width: 100%;
 }
+
+.password-validator {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    transform: translate(0, 0);
+    background-color: #bfbfbf;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px 0 gray;
+    width: auto;
+}
+
+.password-validator.up {
+    top: 5rem;
+}
+
+.password-validator.down {
+    top: -12rem;
+}
+
+.password-validator.down::before {
+    position: absolute;
+    z-index: -1;
+    content: "";
+    right: calc(50% - 10px);
+    top: 100%;
+    width: 0;
+    height: 0;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-top: 10px solid #bfbfbf;
+    transition-duration: 0.3s;
+    transition-property: transform;
+}
+
+.password-validator.up::after {
+    position: absolute;
+    z-index: -1;
+    content: "";
+    right: calc(50% - 10px);
+    top: -8px;
+    border-style: solid;
+    border-width: 0 10px 10px 10px;
+    border-color: transparent transparent #bfbfbf transparent;
+    transition-duration: 0.3s;
+    transition-property: transform;
+}
+
+.check-password:focus+.password-validator {
+    z-index: 10;
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0, -20px);
+    transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+}
+
+.password-validator p {
+    color: #333;
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+.password-validator .requirement-list {
+    margin-top: 20px;
+}
+
+.requirement-list li {
+    font-size: 1.3rem;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.requirement-list li i {
+    width: 20px;
+    color: red;
+    font-size: 0.6rem;
+}
+
+.requirement-list li.valid i {
+    font-size: 1.2rem;
+    color: #6861ce;
+}
+
+.requirement-list li span {
+    margin-left: 12px;
+    color: red;
+}
+
+.requirement-list li.valid span {
+    color: #6861ce;
+}
+
+/*End Password validator*/
+.bg-authenticate {
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: fixed;
+    filter: blur(3px);
+}
+
 .container {
     background-color: #fff;
     border-radius: 10px;
@@ -191,16 +308,20 @@ input {
     max-width: 100%;
     min-height: 640px;
 }
-.terms{
-    color:#6861ce;
+
+.terms {
+    color: #6861ce;
 }
-.remember{
-    color:#ddd;
+
+.remember {
+    color: #ddd;
 }
-.error{
+
+.error {
     color: red;
     font-size: 8px;
 }
+
 .form-container {
     position: absolute;
     top: 0;
@@ -233,6 +354,7 @@ input {
 }
 
 @keyframes show {
+
     0%,
     49.99% {
         opacity: 0;
@@ -262,8 +384,8 @@ input {
 }
 
 .overlay {
-	background-color: #6861ce;
-	background-image: linear-gradient(225deg, #6861ce 0%, #784BA0 35%, #393e50 100%);
+    background-color: #6861ce;
+    background-image: linear-gradient(225deg, #6861ce 0%, #784BA0 35%, #393e50 100%);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 0 0;
@@ -327,6 +449,7 @@ input {
     width: 40px;
     transition: 0.3s ease-in-out;
 }
+
 .social-container a:hover {
     background-color: #6861ce;
     color: #ffffff;
@@ -374,14 +497,17 @@ input {
 .fa-brands {
     font-family: "Font Awesome 6 Brands";
 }
+
 .fas,
 .fa-solid {
     font-weight: 900;
 }
+
 .fab,
 .fa-brands {
     font-weight: 400;
 }
+
 .far,
 .fa-regular {
     font-weight: 400;
@@ -394,14 +520,24 @@ input {
 .fa-google-plus-g:before {
     content: "\f0d5";
 }
+
 .fa-github:before {
-	content: "\f09b"; 
+    content: "\f09b";
 }
+
 .fa-arrow-right-to-bracket::before {
-	content: "\f090"; 
+    content: "\f090";
 }
+
 .fa-user-plus::before {
-	content: "\f234"; 
+    content: "\f234";
+}
+
+.fa-xmark::before {
+    content: "\f00d"
+}
+.fa-check:before {
+    content:"\f00c"
 }
 
 @font-face {
@@ -454,6 +590,7 @@ input {
     src: url("../fonts/fontawesome-6/fa-regular-400.woff2") format("woff2"),
         url("../fonts/fontawesome-6/fa-regular-400.ttf") format("truetype");
 }
+
 @font-face {
     font-family: "FontAwesome";
     font-display: block;
