@@ -68,10 +68,10 @@ class User extends Authenticatable
 
     public function hasRole(Int $role)
     {
-        return $this->rol === $role; 
+        return $this->role === $role; 
     }
 
     public function roles(){
-        return $this->belongsTo(Roles::class, 'rol');
+        return $this->belongsTo(Roles::class, 'role');
     }
 }

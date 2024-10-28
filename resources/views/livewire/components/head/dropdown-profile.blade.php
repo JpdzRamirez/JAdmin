@@ -19,7 +19,7 @@
                         <div class="u-text">
                             <h4>{{ $rol }}</h4>
                             <p class="text-muted">{{ $email }}</p>
-                            <a href="{{ route('profile') }}"
+                            <a href="#"
                                 class="btn btn-xs btn-secondary btn-sm">{{ __('auth.profile') }}</a>
                         </div>
                     </div>

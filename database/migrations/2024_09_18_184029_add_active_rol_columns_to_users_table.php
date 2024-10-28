@@ -18,9 +18,9 @@ return new class extends Migration
             }
 
             // Verifica si la columna 'rol' no existe antes de agregarla
-            if (!Schema::hasColumn('users', 'rol')) {
-                $table->unsignedBigInteger('rol')->after('active')->default(4)->comment('Role of the user');
-                $table->foreign('rol')->references('id')->on('roles')->onDelete('cascade');
+            if (!Schema::hasColumn('users', 'role')) {
+                $table->unsignedBigInteger('role')->after('active')->default(4)->comment('Role of the user');
+                $table->foreign('role')->references('id')->on('roles')->onDelete('cascade');
             }
         });
     }
@@ -37,9 +37,9 @@ return new class extends Migration
         }
 
         // Elimina la columna 'rol' y su llave foránea
-        if (Schema::hasColumn('users', 'rol')) {
-            $table->dropForeign(['rol']);
-            $table->dropColumn('rol');
+        if (Schema::hasColumn('users', 'role')) {
+            $table->dropForeign(['role']);
+            $table->dropColumn('role');
         }
         });
     }

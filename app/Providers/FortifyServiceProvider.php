@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Auth\Events\Registered;
+use App\Models\User;
+
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -85,6 +89,21 @@ class FortifyServiceProvider extends ServiceProvider
 
             // Autenticación fallida, devolver mensaje de error
             return redirect()->back()->withErrors(['login' => 'Las credenciales proporcionadas no coinciden con nuestros registros.']);
+        });
+         // Redirige según el rol después del registro
+         Event::listen(Registered::class, function ($event) {
+            // Vuelve a consultar el usuario para asegurar que el rol esté actualizado
+            $user = User::find($event->user->id);
+
+            if ($user->role == 1) {
+                Redirect::setIntendedUrl('/admin/dashboard');
+            } elseif ($user->role == 2) {
+                Redirect::setIntendedUrl('/casher/dashboard');
+            } elseif ($user->role == 3) {
+                Redirect::setIntendedUrl('/waiter/dashboard');
+            } elseif ($user->role == 4) {
+                Redirect::setIntendedUrl('/customer/dashboard');
+            }
         });
     }
 }
