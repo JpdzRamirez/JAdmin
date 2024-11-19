@@ -92,17 +92,15 @@
                 </div>
                 <span>{{ __('auth.oath-login') }}</span>
                 <!-- Email Input -->
-                <label for="email"
-                class="mb-0 label-required @error('email') is-invalid @enderror">Correo:</label>
-                <input type="email" name="email" placeholder="Email" value="{{ old('email') }}" />
+                <input type="email" class="@error('email') is-invalid @enderror" name="email" placeholder="Email" value="{{ old('email') }}" />
                 @error('email')
-                    <div class="error-message">{{ $message }}</div>
+                    <div class="error">{{ $message }}</div>
                 @enderror
 
                 <!-- Password Input -->
-                <input type="password" name="password" placeholder="Password" />
+                <input type="password" class="@error('password') is-invalid @enderror" name="password" placeholder="Password" />
                 @error('password')
-                    <div class="error-message">{{ $message }}</div>
+                    <div class="error">{{ $message }}</div>
                 @enderror
                 @if (Route::has('password.request'))
                 <a href="{{ route('password.request') }}"> {{ __('auth.forgot-password') }} </a>
@@ -136,18 +134,27 @@
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
+                    <div class="nav-container">
+                        <a href="{{ route('home') }}">
+                            <img src="{{asset('assets/img/svg/homeBack.svg')}}" class="nav-link" alt="Return">
+                        </a>
+                    </div>
                     <h1>{{ __('auth.welcome-signup') }}</h1>
                     <p>{{ __('auth.welcome-sub-signup') }}</p>
                     <button class="ghost" id="signIn">{{ __('auth.welcome-sub-signup-button') }}</button>
                 </div>
                 <div class="overlay-panel overlay-right">
+                    <div class="nav-container">
+                        <a href="{{ route('home') }}">
+                            <img src="{{asset('assets/img/svg/homeBack.svg')}}" class="nav-link" alt="Return">
+                        </a>
+                    </div>
                     <h1>{{ __('auth.welcome-login') }}</h1>
                     <p>{{ __('auth.welcome-sub-login') }}</p>
                     <button class="ghost" id="signUp">{{ __('auth.welcome-sub-login-button') }}</button>
                 </div>
             </div>
         </div>
-    
 
     @push('guestScripts')
         <script>

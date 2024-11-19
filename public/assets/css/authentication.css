@@ -2,6 +2,33 @@
     box-sizing: border-box;
 }
 
+::-webkit-scrollbar-track {
+    border-radius: 1px;
+    background-color: #eee;
+}
+
+::-webkit-scrollbar {
+    width: 18px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 1px;    
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #6861ce;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #6861ce;
+    border-radius: 10px;
+
+}
+
 body {
     display: flex;
     justify-content: center;
@@ -9,8 +36,8 @@ body {
     flex-direction: column;
     font-family: "Montserrat", sans-serif;
     height: 100vh;
-    margin: -20px 0 50px;
     overflow: hidden;
+    padding: 3em;
 }
 
 h1 {
@@ -80,8 +107,9 @@ form {
     justify-content: center;
     flex-direction: column;
     padding: 0 50px;
-    height: 100%;
+    height: min-content;
     text-align: center;
+    margin: 1em;
 }
 
 input {
@@ -134,7 +162,7 @@ input {
     transition: background 0.25s linear, box-shadow 0.25s linear;
 }
 
-.checkbox input+svg {
+.checkbox input + svg {
     width: 21px;
     height: 18px;
     left: 0;
@@ -142,17 +170,17 @@ input {
     color: #fff;
 }
 
-.checkbox input+svg .tick {
+.checkbox input + svg .tick {
     stroke-dasharray: 20;
     stroke-dashoffset: var(--stroke-dashoffset, 20);
     transition: stroke-dashoffset 0.2s;
 }
 
-.checkbox input+svg .tick.mask {
+.checkbox input + svg .tick.mask {
     stroke: var(--active-tick);
 }
 
-.checkbox input+svg+svg {
+.checkbox input + svg + svg {
     width: 11px;
     height: 11px;
     fill: none;
@@ -172,11 +200,11 @@ input {
     --border: var(--active);
 }
 
-.checkbox input:checked+svg {
+.checkbox input:checked + svg {
     --stroke-dashoffset: 0;
 }
 
-.checkbox input:checked+svg+svg {
+.checkbox input:checked + svg + svg {
     --animation: check;
 }
 
@@ -244,7 +272,7 @@ input {
     transition-property: transform;
 }
 
-.check-password:focus+.password-validator {
+.check-password:focus + .password-validator {
     z-index: 10;
     opacity: 1;
     visibility: visible;
@@ -306,7 +334,7 @@ input {
     overflow: hidden;
     width: 768px;
     max-width: 100%;
-    min-height: 640px;
+    min-height: -webkit-fill-available;
 }
 
 .terms {
@@ -319,7 +347,7 @@ input {
 
 .error {
     color: red;
-    font-size: 8px;
+    font-size: 0.8em;
 }
 
 .form-container {
@@ -333,6 +361,9 @@ input {
     left: 0;
     width: 50%;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .container.right-panel-active .sign-in-container {
@@ -344,6 +375,7 @@ input {
     width: 50%;
     opacity: 0;
     z-index: 1;
+    overflow: overlay;
 }
 
 .container.right-panel-active .sign-up-container {
@@ -354,7 +386,6 @@ input {
 }
 
 @keyframes show {
-
     0%,
     49.99% {
         opacity: 0;
@@ -385,7 +416,12 @@ input {
 
 .overlay {
     background-color: #6861ce;
-    background-image: linear-gradient(225deg, #6861ce 0%, #784BA0 35%, #393e50 100%);
+    background-image: linear-gradient(
+        225deg,
+        #6861ce 0%,
+        #784ba0 35%,
+        #393e50 100%
+    );
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 0 0;
@@ -415,6 +451,13 @@ input {
     width: 50%;
     transform: translateX(0);
     transition: transform 0.6s ease-in-out;
+}
+.overlay-panel .nav-link{
+    position: absolute;
+    width: 2em;
+    filter: invert(1);
+    top: 0;
+    right: 5px;
 }
 
 .overlay-left {
@@ -454,7 +497,6 @@ input {
     background-color: #6861ce;
     color: #ffffff;
 }
-
 
 /*ICON SECTION*/
 /*!
@@ -534,10 +576,10 @@ input {
 }
 
 .fa-xmark::before {
-    content: "\f00d"
+    content: "\f00d";
 }
 .fa-check:before {
-    content:"\f00c"
+    content: "\f00c";
 }
 
 @font-face {

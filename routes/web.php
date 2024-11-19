@@ -7,8 +7,8 @@ use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 
 // Ruta de bienvenida
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('pages.main-welcome');
+})->name('home');
 
 // Ruta para mostrar el formulario de login
 Route::get('/authenticate', [AuthenticatedSessionController::class, 'create'])
