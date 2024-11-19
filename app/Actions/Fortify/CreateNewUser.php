@@ -23,10 +23,10 @@ class CreateNewUser implements CreatesNewUsers
     public function create(array $input): User
     {
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255', 'regex:/^[\pL\s]+$/u'], // Letras y espacios
+            'name-create' => ['required', 'string', 'max:255', 'regex:/^[\pL\s]+$/u'], // Letras y espacios
             'lastname' => ['required', 'string', 'max:255', 'regex:/^[\pL\s]+$/u'], // Letras y espacios
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'], // Email único
-            'password' => [
+            'email-create' => ['required', 'string', 'email', 'max:255', 'unique:users'], // Email único
+            'password-create' => [
                 'required',
                 'string',
                 'min:8', // mínimo de 8 caracteres
@@ -38,10 +38,10 @@ class CreateNewUser implements CreatesNewUsers
         ])->validate();
 
         return User::create([
-            'name' => $input['name'],
+            'name' => $input['name-create'],
             'lastname' => $input['lastname'],
-            'email' => $input['email'],
-            'password' => Hash::make($input['password']),
+            'email' => $input['email-create'],
+            'password' => Hash::make($input['password-create']),
         ]);
     }
 }

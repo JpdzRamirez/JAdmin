@@ -5,7 +5,7 @@
     @push('background')
     <img class="bg-authenticate" src="{{asset('assets/img/backgrounds/login-background.jpg')}}" alt="BackGround-Authenticate">
     @endpush
-    
+        {{-- Formulario Registro --}}
         <div class="form-container sign-up-container">
             <form method="POST" class="form-wrapper" action="{{ route('register.attempt') }}">
                 @csrf
@@ -16,86 +16,40 @@
                     <a href="#" class="social"><i class="fab fa-github"></i></a>
                 </div>
                 <span>{{ __('auth.oath-signup') }}</span>
-                <input type="text" placeholder="Name" name="name" value="{{ old('name') }}" required autofocus autocomplete="name" />
-                @error('name')
+                <input type="text" class="form-control @error('name-create') is-invalid @enderror" placeholder="Name"  name="name-create" value="{{ old('name') }}" required autofocus autocomplete="name" />
+                @error('name-create')
                     <div class="error">{{ $message }}</div>
                 @enderror
                 
-                <input type="text" placeholder="Last Name" name="lastname" value="{{ old('lastname') }}" required autofocus autocomplete="lastname" />
+                <input type="text" class="form-control @error('lastname') is-invalid @enderror" placeholder="Last Name" name="lastname" value="{{ old('lastname') }}" required autofocus autocomplete="lastname" />
                 @error('lastname')
                     <div class="error">{{ $message }}</div>
                 @enderror
                 
-                <input type="email" placeholder="Email" name="email" value="{{ old('email') }}" required autocomplete="username" />
-                @error('email')
+                <input type="email-create" class="form-control @error('email-create') is-invalid @enderror" placeholder="Email" name="email-create" value="{{ old('email') }}" required autocomplete="username" />
+                @error('email-create')
                     <div class="error">{{ $message }}</div>
                 @enderror
                 
                 <div class="password-group">
-                    <input type="password" class="check-password" placeholder="Password" name="password" required autocomplete="new-password" />
-                    @error('password')
+                    <input type="password" class="check-password  @error('password-create') is-invalid @enderror" placeholder="Password" name="password-create" required autocomplete="new-password" />
+                    @error('password-create')
                         <div class="error">{{ $message }}</div>
                     @enderror
                     <div class="password-validator up">
-                        {{-- <p>Password must contains</p>
-                        <ul class="requirement-list">
-                          <li>
-                            <i class="fa-solid fa-xmark"></i>
-                            <span>At least 8 characters length</span>
-                          </li>
-                          <li>
-                            <i class="fa-solid fa-xmark"></i>
-                            <span>At least 1 number (0...9)</span>
-                          </li>
-                          <li>
-                            <i class="fa-solid fa-xmark"></i>
-                            <span>At least 1 lowercase letter (a...z)</span>
-                          </li>
-                          <li>
-                            <i class="fa-solid fa-xmark"></i>
-                            <span>At least 1 special symbol (!...$)</span>
-                          </li>
-                          <li>
-                            <i class="fa-solid fa-xmark"></i>
-                            <span>At least 1 uppercase letter (A...Z)</span>
-                          </li>
-                        </ul> --}}
                     </div>
                 </div>
                 <div class="password-group">
-                    <input type="password" class="check-password" placeholder="Confirm Password" name="password_confirmation" required autocomplete="new-password" />
+                    <input type="password" class="check-password @error('password_confirmation') is-invalid @enderror" placeholder="Confirm Password" name="password_confirmation" required autocomplete="new-password" />
                     @error('password_confirmation')
                         <div class="error">{{ $message }}</div>
                     @enderror
                     <div class="password-validator down">
-                        {{-- <p>Password must contains</p>
-                        <ul class="requirement-list">
-                          <li>
-                            <i class="fa-solid fa-xmark"></i>
-                            <span>At least 8 characters length</span>
-                          </li>
-                          <li>
-                            <i class="fa-solid fa-xmark"></i>
-                            <span>At least 1 number (0...9)</span>
-                          </li>
-                          <li>
-                            <i class="fa-solid fa-xmark"></i>
-                            <span>At least 1 lowercase letter (a...z)</span>
-                          </li>
-                          <li>
-                            <i class="fa-solid fa-xmark"></i>
-                            <span>At least 1 special symbol (!...$)</span>
-                          </li>
-                          <li>
-                            <i class="fa-solid fa-xmark"></i>
-                            <span>At least 1 uppercase letter (A...Z)</span>
-                          </li>
-                        </ul> --}}
                     </div>
                 </div>
                 @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                     <div class="input-checkbox">
-                        <label for="terms" class="checkbox">
+                        <label for="terms" class="checkbox @error('terms') is-invalid @enderror">
                             <input type="checkbox" name="terms" id="terms" required  />
                             <svg viewBox="0 0 21 18">
                                 <symbol id="tick-path" viewBox="0 0 21 18" xmlns="http://www.w3.org/2000/svg">
@@ -126,6 +80,7 @@
                 <button type="submit">{{ __('auth.signup') }} <i class="fa-solid fa-user-plus"></i></button>
             </form>
         </div>
+        {{-- Formulario Login --}}
         <div class="form-container sign-in-container">
             <form method="POST" action="{{ route('login.attempt') }}">
                 @csrf
@@ -137,6 +92,8 @@
                 </div>
                 <span>{{ __('auth.oath-login') }}</span>
                 <!-- Email Input -->
+                <label for="email"
+                class="mb-0 label-required @error('email') is-invalid @enderror">Correo:</label>
                 <input type="email" name="email" placeholder="Email" value="{{ old('email') }}" />
                 @error('email')
                     <div class="error-message">{{ $message }}</div>
@@ -216,7 +173,7 @@
                 container.classList.remove("right-panel-active");
             });
             // Si hay errores de validación, mostrar el formulario de registro
-            @if ($errors->has('name') || $errors->has('lastname') || $errors->has('email') || $errors->has('password') || $errors->has('password_confirmation'))
+            @if ($errors->has('name-create') || $errors->has('lastname') || $errors->has('email-create') || $errors->has('password-create') || $errors->has('password_confirmation'))
                 container.classList.add("right-panel-active");
             @endif
         </script>

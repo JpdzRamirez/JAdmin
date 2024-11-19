@@ -88,7 +88,8 @@ class FortifyServiceProvider extends ServiceProvider
             }
 
             // Autenticación fallida, devolver mensaje de error
-            return redirect()->back()->withErrors(['login' => 'Las credenciales proporcionadas no coinciden con nuestros registros.']);
+            // return redirect()->back()->withErrors(['login' => 'Las credenciales proporcionadas no coinciden con nuestros registros.']);
+            return null;
         });
          // Redirige según el rol después del registro
          Event::listen(Registered::class, function ($event) {
