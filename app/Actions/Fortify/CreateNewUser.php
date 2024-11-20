@@ -23,25 +23,25 @@ class CreateNewUser implements CreatesNewUsers
     public function create(array $input): User
     {
         Validator::make($input, [
-            'name-create' => ['required', 'string', 'max:255', 'regex:/^[\pL\s]+$/u'], // Letras y espacios
+            'name_create' => ['required', 'string', 'max:255', 'regex:/^[\pL\s]+$/u'], // Letras y espacios
             'lastname' => ['required', 'string', 'max:255', 'regex:/^[\pL\s]+$/u'], // Letras y espacios
-            'email-create' => ['required', 'string', 'email', 'max:255', 'unique:users'], // Email único
-            'password-create' => [
+            'email_create' => ['required', 'string', 'email', 'max:255', 'unique:users,email'], // Email único
+            'password_create' => [
                 'required',
                 'string',
                 'min:8', // mínimo de 8 caracteres
                 new PasswordRule(),
                 'confirmed', // debe coincidir con el campo de confirmación
             ],
-            'password_confirmation' => ['required', 'same:password'],
+            'password_create_confirmation' => ['required', 'same:password_create'],
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
         return User::create([
-            'name' => $input['name-create'],
+            'name' => $input['name_create'],
             'lastname' => $input['lastname'],
-            'email' => $input['email-create'],
-            'password' => Hash::make($input['password-create']),
+            'email' => $input['email_create'],
+            'password' => Hash::make($input['password_create']),
         ]);
     }
 }

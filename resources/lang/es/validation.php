@@ -100,7 +100,7 @@ return [
             'max' => 'El campo :attribute no puede exceder los :max caracteres.',
             'regex' => 'El campo :attribute no admite numeros.',
         ],
-        'password' => [
+        'password_create' => [
             'required' => 'El campo :attribute es obligatorio.',
             'min' => 'El campo :attribute debe tener mínimo :min caracteres.',
             'minjs'=> 'Al menos 8 caracteres de longitud',

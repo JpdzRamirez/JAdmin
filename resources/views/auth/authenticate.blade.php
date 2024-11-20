@@ -16,32 +16,32 @@
                     <a href="#" class="social"><i class="fab fa-github"></i></a>
                 </div>
                 <span>{{ __('auth.oath-signup') }}</span>
-                <input type="text" class="form-control @error('name-create') is-invalid @enderror" placeholder="Name"  name="name-create" value="{{ old('name') }}" required autofocus autocomplete="name" />
-                @error('name-create')
+                <input type="text" class="form-control @error('name_create') is-invalid @enderror" placeholder="Name"  name="name_create" value="{{ old('name_create') }}" required autofocus autocomplete="Name" />
+                @error('name_create')
                     <div class="error">{{ $message }}</div>
                 @enderror
                 
-                <input type="text" class="form-control @error('lastname') is-invalid @enderror" placeholder="Last Name" name="lastname" value="{{ old('lastname') }}" required autofocus autocomplete="lastname" />
+                <input type="text" class="form-control @error('lastname') is-invalid @enderror" placeholder="Last Name" name="lastname" value="{{ old('lastname') }}" required autofocus autocomplete="Lastname" />
                 @error('lastname')
                     <div class="error">{{ $message }}</div>
                 @enderror
                 
-                <input type="email-create" class="form-control @error('email-create') is-invalid @enderror" placeholder="Email" name="email-create" value="{{ old('email') }}" required autocomplete="username" />
-                @error('email-create')
+                <input type="email-create" class="form-control @error('email_create') is-invalid @enderror" placeholder="Email" name="email_create" value="{{ old('email_create') }}" required autocomplete="Email" />
+                @error('email_create')
                     <div class="error">{{ $message }}</div>
                 @enderror
                 
                 <div class="password-group">
-                    <input type="password" class="check-password  @error('password-create') is-invalid @enderror" placeholder="Password" name="password-create" required autocomplete="new-password" />
-                    @error('password-create')
+                    <input type="password" class="check-password  @error('password_create') is-invalid @enderror" placeholder="Password" name="password_create" required autocomplete="new-password" />
+                    @error('password_create')
                         <div class="error">{{ $message }}</div>
                     @enderror
                     <div class="password-validator up">
                     </div>
                 </div>
                 <div class="password-group">
-                    <input type="password" class="check-password @error('password_confirmation') is-invalid @enderror" placeholder="Confirm Password" name="password_confirmation" required autocomplete="new-password" />
-                    @error('password_confirmation')
+                    <input type="password" class="check-password @error('password_create_confirmation') is-invalid @enderror" placeholder="Confirm Password" name="password_create_confirmation" required autocomplete="new-password" />
+                    @error('password_create_confirmation')
                         <div class="error">{{ $message }}</div>
                     @enderror
                     <div class="password-validator down">

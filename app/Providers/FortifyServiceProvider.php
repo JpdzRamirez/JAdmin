@@ -95,16 +95,19 @@ class FortifyServiceProvider extends ServiceProvider
          Event::listen(Registered::class, function ($event) {
             // Vuelve a consultar el usuario para asegurar que el rol esté actualizado
             $user = User::find($event->user->id);
-
-            if ($user->role == 1) {
-                Redirect::setIntendedUrl('/admin/dashboard');
-            } elseif ($user->role == 2) {
-                Redirect::setIntendedUrl('/casher/dashboard');
-            } elseif ($user->role == 3) {
-                Redirect::setIntendedUrl('/waiter/dashboard');
-            } elseif ($user->role == 4) {
-                Redirect::setIntendedUrl('/customer/dashboard');
+            if (!$user->hasVerifiedEmail()) {
+                // Redirige a la página de solicitud de verificación
+                Redirect::setIntendedUrl('/email/verify-prompt');
             }
+            // if ($user->role == 1) {
+            //     Redirect::setIntendedUrl('/admin/dashboard');
+            // } elseif ($user->role == 2) {
+            //     Redirect::setIntendedUrl('/casher/dashboard');
+            // } elseif ($user->role == 3) {
+            //     Redirect::setIntendedUrl('/waiter/dashboard');
+            // } elseif ($user->role == 4) {
+            //     Redirect::setIntendedUrl('/customer/dashboard');
+            // }
         });
     }
 }
