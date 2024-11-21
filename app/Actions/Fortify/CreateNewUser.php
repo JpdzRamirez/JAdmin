@@ -4,44 +4,47 @@ namespace App\Actions\Fortify;
 
 use App\Models\User;
 
-use App\Rules\PasswordRule;
+
+use App\Contracts\UserRepositoryInterface;
+use App\Http\Requests\StoreUserRequest;
 
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+
 use Laravel\Fortify\Contracts\CreatesNewUsers;
-use Laravel\Jetstream\Jetstream;
+
 
 class CreateNewUser implements CreatesNewUsers
 {
     use PasswordValidationRules;
 
+    protected $userRepository;
+
     /**
+     * Constructor para inyectar el repositorio de usuarios.
+     *
+     * @param UserRepositoryInterface $userRepository
+     */
+    public function __construct(UserRepositoryInterface $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+     /**
      * Validate and create a newly registered user.
      *
-     * @param  array<string, string>  $input
+     * @param array<string, string> $input
+     * @return \App\Models\User
      */
     public function create(array $input): User
     {
-        Validator::make($input, [
-            'name_create' => ['required', 'string', 'max:255', 'regex:/^[\pL\s]+$/u'], // Letras y espacios
-            'lastname' => ['required', 'string', 'max:255', 'regex:/^[\pL\s]+$/u'], // Letras y espacios
-            'email_create' => ['required', 'string', 'email', 'max:255', 'unique:users,email'], // Email único
-            'password_create' => [
-                'required',
-                'string',
-                'min:8', // mínimo de 8 caracteres
-                new PasswordRule(),
-                'confirmed', // debe coincidir con el campo de confirmación
-            ],
-            'password_create_confirmation' => ['required', 'same:password_create'],
-            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
-        ])->validate();
+        // Usar la clase de validación StoreUserRequest para validar los datos
+        $validatedData = app(StoreUserRequest::class)->validate($input);
 
-        return User::create([
-            'name' => $input['name_create'],
-            'lastname' => $input['lastname'],
-            'email' => $input['email_create'],
-            'password' => Hash::make($input['password_create']),
+        // Crear el usuario a través del repositorio
+        return $this->userRepository->create([
+            'name' => $validatedData['name_create'],
+            'lastname' => $validatedData['lastname'],
+            'email' => $validatedData['email_create'],
+            'password' => Hash::make($validatedData['password_create']),
         ]);
     }
 }

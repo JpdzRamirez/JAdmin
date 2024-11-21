@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Providers;
+use App\Contracts\UserRepositoryInterface;
+
+use App\Repositories\UserRepository;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -11,7 +14,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // Registrar las interfaces con su implementación
+        //Builder Interfaces
+        $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
     }
 
     /**
@@ -19,6 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        
     }
 }
