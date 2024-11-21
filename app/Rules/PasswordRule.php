@@ -31,5 +31,11 @@ class PasswordRule implements ValidationRule
                     $fail('El campo :attribute debe contener al menos un número.');
                     return;
                 }
+                
+                // Verifica si tiene al menos un carácter especial
+                if (!preg_match('/[\W_]/', $value)) { // \W coincide con cualquier carácter que no sea alfanumérico
+                    $fail('El campo :attribute debe contener al menos un carácter especial.');
+                    return;
+                }
     }
 }

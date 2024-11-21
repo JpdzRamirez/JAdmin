@@ -68,14 +68,16 @@ a, a:hover {
 
 			<!-- LOGO -->
 			
-			<a target="_blank" style="text-decoration: none;"
+			<a target="_blank" style="text-decoration: none; color:#333"
 				href="https://github.com/JpdzRamirez">
 				<img border="0" vspace="0" hspace="0"
-				src="https://raw.githubusercontent.com/JpdzRamirez/cros_repository/refs/heads/main/Resources/img/mailBox.svg"
-				width="100" height="30"
-				alt="Logo" title="Logo" style="
+				src="https://raw.githubusercontent.com/JpdzRamirez/cros_repository/refs/heads/main/Resources/img/icon-192.png"
+				width="50" height="50"
+				alt="LogoMail" title="LogoMail" style="
 				color: #000000;
-				font-size: 10px; margin: 0; padding: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: block;" /></a>
+				font-size: 10px; margin: 0; padding: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: block;" />
+				Psicometria
+				</a>
 
 		</td>
 	</tr>
@@ -119,7 +121,7 @@ a, a:hover {
 			padding-top: 20px;" class="hero"><a target="_blank" style="text-decoration: none;"
 			href="https://github.com/JpdzRamirez">
 			<img border="0" vspace="0" hspace="0"
-			src="https://raw.githubusercontent.com/JpdzRamirez/cros_repository/refs/heads/main/Resources/img/verificacion.jpg"
+			src="https://raw.githubusercontent.com/JpdzRamirez/cros_repository/refs/heads/main/Resources/img/authenticity.png"
 			alt="Please enable images to view this content" title="Hero Image"
 			width="160" style="
 			width: 40%;
@@ -146,12 +148,12 @@ a, a:hover {
 			padding-top: 25px;
 			padding-bottom: 5px;" class="button">
 			<a
-			href="" target="_blank" style="text-decoration: underline;">
+			href="{{ $verificationUrl }}" target="_blank" style="text-decoration: underline;">
 				<table border="0" cellpadding="0" cellspacing="0" align="center" style="max-width: 240px; min-width: 120px; border-collapse: collapse; border-spacing: 0; padding: 0;"><tr><td align="center" valign="middle" style="padding: 12px 24px; margin: 0; text-decoration: underline; border-collapse: collapse; border-spacing: 0; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px;"
 					bgcolor="#000D55">
 					<a target="_blank" style="text-decoration: underline;
 					color: #FFFFFF; font-family: sans-serif; font-size: 17px; font-weight: 400; line-height: 120%;"
-					href="">
+					href="{{ $verificationUrl }}">
 					{{__('general.contact-message-body-button-verify')}}
 					</a>
 			</td></tr></table></a>

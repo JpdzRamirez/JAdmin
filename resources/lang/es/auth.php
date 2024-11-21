@@ -25,6 +25,11 @@ return [
     'welcome-signup'=>'¿Ya tienes una cuenta?',
     'welcome-sub-signup'=> 'Ingresa tus datos personales y empieza a gestionar tu restaurante con nosotros.',    
     'welcome-sub-signup-button'=>'Inicia Sesión',
+    //Mail verify
+    'registered-title'=>'Gracias por registrarte',
+    'registered-paragraf'=>'Hemos enviado un enlace de verificación a tu correo electrónico. Por favor, verifica tu dirección para continuar.',
+    'registered-call'=>'¿No recibiste el correo?',
+    'registered-button'=>'Reenviar enlace de verificación',
 
     'remember'=>'Permanecer conectado',
     'terms'=>'Acepto los',

@@ -178,7 +178,6 @@ form {
     justify-content: center;
     flex-direction: column;
     padding: 0 50px;
-    height: -webkit-fill-available;
     text-align: center;
     margin: 1em;
 }
@@ -413,7 +412,7 @@ input {
 }
 
 .remember {
-    color: #ddd;
+    color: #1469b6;
 }
 
 .error {
@@ -542,6 +541,14 @@ input {
 .overlay-right {
     right: 0;
     transform: translateX(0);
+}
+.terms_policy{
+    padding-top: 2em;
+    overflow-y: scroll;
+}
+.terms_policy-content{
+white-space: pre-line;
+text-align: justify;
 }
 
 .container.right-panel-active .overlay-right {

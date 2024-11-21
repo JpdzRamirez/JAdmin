@@ -7,13 +7,21 @@ use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Laravel\Fortify\Http\Controllers\VerificationController;
 
-
-// Ruta de bienvenida
+/*🏠
+-----------------------------------------------
+*****************Ruta default-home*************
+-----------------------------------------------
+ */
 Route::get('/', function () {
     return view('pages.main-welcome');
 })->name('home');
 
-// Ruta para mostrar el formulario de login
+/*🔏
+------------------------------------------------------------------
+*****************Ruta autenticación, login y register*************
+------------------------------------------------------------------
+ */
+
 Route::get('/authenticate', [AuthenticatedSessionController::class, 'create'])
     ->middleware(['guest'])
     ->name('login'); // Cambia la ruta /login por /authenticate
@@ -36,8 +44,35 @@ Route::post('/authenticate/register', [RegisteredUserController::class, 'store']
 Route::redirect('/login', '/authenticate');
 Route::redirect('/register', '/authenticate');
 
+/* 📩📤📫
+-----------------------------------------------------------
+************Validación de correo electrónico******************
+--------------------------------------------------------------
+ */
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
 
-// Rutas para el dashboard de usuarios autenticados
+    return redirect('/dashboard'); // Cambiar por la página deseada
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::get('/email/verify-prompt', function () {
+    return view('auth.verify-email'); // Cambia por la vista que hayas creado
+})->middleware('auth')->name('verification.notice');
+
+Route::post('/email/verification-notification', [VerificationController::class, 'resendVerificationEmail'])
+    ->middleware(['auth'])
+    ->name('verification.send');
+
+Route::get('/email/resend', [VerificationController::class, 'resend'])
+    ->middleware(['auth'])
+    ->name('verification.resend');
+
+/* 🧑‍⚕️
+------------------------------------------------------
+---Rutas para el dashboard de usuarios autenticados***
+------------------------------------------------------
+*/
+
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
 
     // Rutas para usuarios con rol de administrador (role 1)
@@ -75,25 +110,19 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     // Aquí puedes agregar más rutas para otros roles o configuraciones.
 });
 
-// Ruta de plantilla de correo electronico
+
+// 🛠️🛠️ ZONA MANTENIMIENTO
+/* 
+----------------------------------------------------------
+*******Ruta de plantilla de correo electronico************
+----------------------------------------------------------
+*/
 Route::get('/contact', function () {
     return view('emails.validate-email');
 })->name('contact');
 
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
+Route::get('/verify-email', function () {
+    return view('auth.verify-email');
+})->name('verify.email');
 
-    return redirect('/dashboard'); // Cambiar por la página deseada
-})->middleware(['auth', 'signed'])->name('verification.verify');
 
-Route::get('/email/verify-prompt', function () {
-    return view('auth.verify-email'); // Cambia por la vista que hayas creado
-})->middleware('auth')->name('verification.notice');
-
-Route::post('/email/verification-notification', [VerificationController::class, 'resendVerificationEmail'])
-    ->middleware(['auth'])
-    ->name('verification.send');
-
-Route::get('/email/resend', [VerificationController::class, 'resend'])
-    ->middleware(['auth'])
-    ->name('verification.resend');
