@@ -27,7 +27,9 @@
     background-color: #1469b6;
     border-radius: 10px;
 }
-
+.hidden{
+    display: none !important;
+}
 /*--------------------------------------------------------------
 # Preloader
 --------------------------------------------------------------*/
@@ -176,7 +178,7 @@ form {
     justify-content: center;
     flex-direction: column;
     padding: 0 50px;
-    height: min-content;
+    height: -webkit-fill-available;
     text-align: center;
     margin: 1em;
 }

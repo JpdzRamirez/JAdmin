@@ -1,0 +1,27 @@
+[
+    {
+        "nombre":"Juan Perez",
+        "email":"juan.perez@example.com",
+        "comentario":"Este es un comentario de ejemplo de Juan."
+    },
+    {
+        "nombre":"Ana Garcia",
+        "email":"ana.garcia@example.com",
+        "comentario":"Este es otro comentario de ejemplo de Ana."
+    },
+    {
+        "nombre":"Brayan Valenzuela",
+        "email":"algo@correo.com",
+        "comentario":"El contenido de esta plataforma es excelente!"
+    },
+    {
+        "nombre":"Brayan Valenzuela",
+        "email":"algo@correo.com",
+        "comentario":"Comentario de prueba!"
+    },
+    {
+        "nombre":"Brayan Valenzuela",
+        "email":"algo@correo.com",
+        "comentario":"Comentario de prueba 2!"
+    }
+]

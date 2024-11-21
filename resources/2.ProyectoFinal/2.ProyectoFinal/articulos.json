@@ -1,0 +1,75 @@
+{
+  "articulos": [
+    {
+      "id": "1",
+      "nombre": "Leanne Graham",
+      "correo": "Sincero@april.biz",
+      "telefono": 1770736803156442,
+      "empresa": "Romaguera-Crona"
+    },
+    {
+      "id": "2",
+      "nombre": "Ervin Howell",
+      "correo": "Shanna@melissa.tv",
+      "telefono": 10692659309125,
+      "empresa": "Deckow-Crist"
+    },
+    {
+      "id": "3",
+      "nombre": "Clementina Bauch",
+      "correo": "Nathan@yesenia.net",
+      "telefono": 14631234447,
+      "sitio web": "ramiro.info",
+      "empresa": "Romaguera-Jacobson"
+    },
+    {
+      "id": "4",
+      "nombre": "Patricia Lebsack",
+      "correo": "Julianne.OConner@kory.org",
+      "telefono": 4931709623156,
+      "empresa": "Robel-Corkery"
+    },
+    {
+      "id": "5",
+      "nombre": "Chelsey Dietrich",
+      "correo": "Lucio_Hettinger@annie.ca",
+      "telefono": 2549541289,
+      "empresa": "Keebler LLC"
+    },
+    {
+      "id": "6",
+      "nombre": "Sra. Dennis Schulist",
+      "correo": "Karley_Dach@jasper.info",
+      "telefono": 147793584786430,
+      "empresa": "Considine-Lockman"
+    },
+    {
+      "id": "7",
+      "nombre": "Kurtis Weissnat",
+      "correo": "Telly.Hoeger@billy.biz",
+      "telefono": 2100676132,
+      "empresa": "Grupo Johns"
+    },
+    {
+      "id": "8",
+      "nombre": "Nicolás Runolfsdottir V",
+      "correo": "Sherwood@rosamond.me",
+      "telefono": 5864936943140,
+      "empresa": "Grupo Abernathy"
+    },
+    {
+      "id": "9",
+      "nombre": "Glenna Reichert",
+      "correo": "Chaim_McDermott@dana.io",
+      "telefono": 775976679441206,
+      "empresa": "Yost e hijos"
+    },
+    {
+      "id": "10",
+      "nombre": "Clementina DuBuque",
+      "correo": "Rey.Padberg@karina.biz",
+      "telefono": 8246483804,
+      "empresa": "Hoeger LLC"
+    }
+  ]
+}

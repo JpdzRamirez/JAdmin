@@ -81,7 +81,7 @@
             </form>
         </div>
         {{-- Formulario Login --}}
-        <div class="form-container sign-in-container">
+        <div class="form-container sign-in-container" id="sign-in">
             <form method="POST" action="{{ route('login.attempt') }}">
                 @csrf
                 <h1>{{ __('auth.login-title') }}</h1>
@@ -171,16 +171,21 @@
             const signUpButton = document.getElementById('signUp');
             const signInButton = document.getElementById('signIn');
             const container = document.getElementById('container');
+            const sign_in = document.getElementById('sign-in');
 
             signUpButton.addEventListener('click', () => {
                 container.classList.add("right-panel-active");
+                setTimeout(() => {
+                    sign_in.classList.add("hidden");
+                }, 400);               
             });
 
             signInButton.addEventListener('click', () => {
                 container.classList.remove("right-panel-active");
+                sign_in.classList.remove("hidden");
             });
             // Si hay errores de validación, mostrar el formulario de registro
-            @if ($errors->has('name-create') || $errors->has('lastname') || $errors->has('email-create') || $errors->has('password-create') || $errors->has('password_confirmation'))
+            @if ($errors->has('name_create') || $errors->has('lastname') || $errors->has('email_create') || $errors->has('password_create') || $errors->has('password_create_confirmation'))
                 container.classList.add("right-panel-active");
             @endif
         </script>
