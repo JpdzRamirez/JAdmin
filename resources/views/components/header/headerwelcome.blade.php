@@ -20,9 +20,34 @@
                 @if (Route::has('login'))
                         @auth
                         <li>
-                            <a href="{{ url('/dashboard') }}">
-                                Dashboard
-                            </a>
+                            @if(auth()->user()->email_verified_at)
+                                {{-- Usuario verificado --}}
+                                @switch(auth()->user()->roles->id)
+                                    @case(1)
+                                        <a href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
+                                        @break
+
+                                    @case(2)
+                                        <a href="{{ route('doctor.dashboard') }}">Doctor Dashboard</a>
+                                        @break
+
+                                    @case(3)
+                                        <a href="{{ route('assistant.dashboard')}}">Assitant Dashboard</a>
+                                        @break
+
+                                    @case(4)
+                                        <a href="{{ route('customer.dashboard') }}">Customer Dashboard</a>
+                                        @break
+                                    @default
+                                    {{-- Si el usuario está verificado pero no cuenta con un rol --}}
+                                        <a href="{{ route('unauthorized.dashboard') }}">Default Dashboard</a>
+                                @endswitch
+                            @else
+                                {{-- Si el correo no está verificado --}}
+                                <a href="{{ route('unauthorized') }}">
+                                    {{ __('auth.registered-button-verify') }}
+                                </a>
+                            @endif
                         </li>    
                         @else
                         <li>

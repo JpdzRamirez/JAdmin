@@ -26,10 +26,12 @@ return [
     'welcome-sub-signup'=> 'Ingresa tus datos personales y empieza a gestionar tu restaurante con nosotros.',    
     'welcome-sub-signup-button'=>'Inicia Sesión',
     //Mail verify
+    'registered-button-verify'=>'Verificar Email',
     'registered-title'=>'Gracias por registrarte',
     'registered-paragraf'=>'Hemos enviado un enlace de verificación a tu correo electrónico. Por favor, verifica tu dirección para continuar.',
     'registered-call'=>'¿No recibiste el correo?',
     'registered-button'=>'Reenviar enlace de verificación',
+    'registered-message-resend'=>'¡El enlace de verificación ha sido reenviado!',
 
     'remember'=>'Permanecer conectado',
     'terms'=>'Acepto los',
@@ -40,5 +42,9 @@ return [
     'failed'   => 'Estas credenciales no coinciden con nuestros registros.',
     'throttle' => 'Demasiados intentos de acceso. Por favor intente nuevamente en :seconds segundos.',
     'profile'=>'Perfil',
-    'users'=> 'Administrar Usuarios'
+    'users'=> 'Administrar Usuarios',
+
+    'unauthorized-title'=>'No estás autorizado para acceder a Psicometría',
+    'unauthorized-help'=>'¡Debes verificar el correo eléctronico!',
+    'unauthorized-content'=>'Por favor, contacta con el administrador si crees que esto es un error.',
 ];

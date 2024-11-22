@@ -19,6 +19,11 @@
                     </div>
                     <h1>{{ __('auth.registered-title') }}</h1>
                     <p>{{ __('auth.registered-paragraf') }}</p>
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
                     <span>{{ __('auth.registered-call') }}</span>
                     <a href="{{ route('verification.resend') }}">
                         <button class="ghost" id="signUp">{{ __('auth.registered-button') }}</button>

@@ -1,4 +1,4 @@
-<x-dashboard>
+<x-app-layout>
             @switch(auth()->user()->rol)
                 @case(1)
                     @livewire('pages.admin')
@@ -28,8 +28,19 @@
                 @case(4)
                     @livewire('pages.admin')
                     @break
-            
                 @default
-                    
+                <div class="main-panel">
+                    <div class="main-header">
+
+                    </div>
+                    <div class="container">
+                        <div class="page-inner">
+                            @livewire('pages.unauthorized')
+                        </div>
+                    </div>
+                    <footer class="footer">
+                        @include('components.sections.dashboard.footer.footer')
+                    </footer>
+                </div>                    
             @endswitch
-</x-dashboard>
+</x-app-layout>

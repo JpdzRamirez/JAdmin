@@ -94,6 +94,12 @@ return [
             'max' => 'El campo :attribute no puede exceder los :max caracteres.',
             'regex' => 'El campo :attribute no admite numeros.',
         ],
+        'name_create' => [
+            'required' => 'El campo :attribute es obligatorio.',
+            'string'=>'El campo :attribute solo admite caracteres',
+            'max' => 'El campo :attribute no puede exceder los :max caracteres.',
+            'regex' => 'El campo :attribute no admite numeros.',
+        ],
         'lastname' => [
             'required' => 'El campo :attribute es obligatorio.',
             'string'=>'El campo :attribute solo admite caracteres.',
@@ -119,6 +125,13 @@ return [
             'required' => 'Es obligatorio aceptar los términos y condiciones.',
         ],
         'email' => [
+            'required' => 'El campo :attribute es obligatorio.',
+            'string' => 'El :attribute debe ser una cadena de texto.',
+            'email' => 'El formato del :attribute es inválido.',
+            'max' => 'El :attribute no debe exceder :max caracteres.',
+            'unique' => 'Este :attribute ya está en uso.',
+        ],
+        'email_create' => [
             'required' => 'El campo :attribute es obligatorio.',
             'string' => 'El :attribute debe ser una cadena de texto.',
             'email' => 'El formato del :attribute es inválido.',

@@ -18,7 +18,7 @@ class CheckRole
     {   
         if (!Auth::check() || !Auth::user()->hasRole($role)) {
             // Redirige o responde con un error si el usuario no tiene el rol adecuado
-            return redirect()->route('unauthorized')->with('role', Auth::user()->role);;
+            return redirect()->route('unauthorized.dashboard');
         }
         return $next($request);
     }

@@ -159,11 +159,11 @@
     @push('guestScripts')
         <script>
             const passwordRequirements = {
-                minLength: "{{ __('validation.custom.password.minjs') }}",
-                number: "{{ __('validation.custom.password.number') }}",
-                lowercase: "{{ __('validation.custom.password.lowercase') }}",
-                special: "{{ __('validation.custom.password.special') }}",
-                uppercase: "{{ __('validation.custom.password.uppercase') }}"
+                minLength: "{{ __('validation.custom.password_create.minjs') }}",
+                number: "{{ __('validation.custom.password_create.number') }}",
+                lowercase: "{{ __('validation.custom.password_create.lowercase') }}",
+                special: "{{ __('validation.custom.password_create.special') }}",
+                uppercase: "{{ __('validation.custom.password_create.uppercase') }}"
             };
         </script>
         <script src="{{asset('assets/js/passwordChecker.js')}}"></script>

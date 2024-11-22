@@ -22,7 +22,7 @@
 
     {{-- Personal CSS Files --}}
     {{-- <link rel="stylesheet" href="assets/css/kaiadmin.css" /> --}}
-    <link rel="stylesheet" href="assets/css/plugins.min.css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins.min.css') }}" />
     {{-- Scripts --}}
     @vite(['resources/css/app.min.css', 'resources/js/app.js'])
     @livewireStyles
@@ -37,26 +37,31 @@
     <div class="min-h-screen bg-gray-100 ">
         {{-- Page Content --}}
         <main>
-            {{ $slot }}
+            <div class="wrapper">
+                <div class="slidebar">
+                    @include('components.sections.dashboard.sidebar')
+                </div>
+                {{ $slot }}
+            </div>
         </main>
     </div>
-    <script src="assets/js/core/jquery-3.7.1.min.js"></script>
-    <script src="assets/js/core/popper.min.js"></script>
-    <script src="assets/js/core/bootstrap.min.js"></script>
+    <script src="{{ asset('assets/js/core/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
 
     {{-- Sweet Alert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     {{-- Bootstrap Notify --}}
-    <script src="assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+    <script src="{{ asset('assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
     @livewireScripts
     @stack('dashboardModal')
     @stack('dashboardScripts')
 
     {{-- PERSONAL SCRIPTS --}}
-    <script src="assets/js/kaiadmin.min.js"></script>
-    <script src="assets/js/setting-demo.js"></script>
-    <script src="assets/js/demo.js"></script>
+    <script src="{{ asset('assets/js/JAdmin.min.js') }}"></script>
+    <script src="{{ asset('assets/js/setting-demo.js') }}"></script>
+    <script src="{{ asset('assets/js/demo.js') }}"></script>
 
 </body>
 

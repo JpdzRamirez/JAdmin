@@ -6,6 +6,7 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Laravel\Fortify\Http\Controllers\VerificationController;
+use App\Notifications\CustomVerifyEmail;
 
 /*🏠
 -----------------------------------------------
@@ -51,28 +52,38 @@ Route::redirect('/register', '/authenticate');
  */
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
-
-    return redirect('/dashboard'); // Cambiar por la página deseada
+    return redirect()->route('unauthorized.dashboard'); // Se redirige al dashboard sin rol
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::get('/email/verify-prompt', function () {
     return view('auth.verify-email'); // Cambia por la vista que hayas creado
 })->middleware('auth')->name('verification.notice');
 
-Route::post('/email/verification-notification', [VerificationController::class, 'resendVerificationEmail'])
-    ->middleware(['auth'])
-    ->name('verification.send');
+// Route::post('/email/verification-notification', [VerificationController::class, 'resendVerificationEmail'])
+//     ->middleware(['auth'])
+//     ->name('verification.send');
 
-Route::get('/email/resend', [VerificationController::class, 'resend'])
+Route::get('/email/resend', [CustomVerifyEmail::class, 'resend'])
     ->middleware(['auth'])
     ->name('verification.resend');
 
 /* 🧑‍⚕️
 ------------------------------------------------------
----Rutas para el dashboard de usuarios autenticados***
+---Rutas para  REGISTRADOS Y NO AUTENTICADOS**********
 ------------------------------------------------------
 */
+Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(function () {
 
+    Route::get('/unauthorized', function () {
+        return view('unauthorized');
+    })->name('unauthorized');
+
+});
+/*
+**********************************************************
+--------------------ZONA YA VERIFICADA CON EMAIL----------
+**********************************************************
+*/
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
 
     // Rutas para usuarios con rol de administrador (role 1)
@@ -84,16 +95,16 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
     // Rutas para usuarios con rol de usuario cajero (role casher)
     Route::middleware(['role:2'])->group(function () {
-        Route::get('/casher/dashboard', function () {
+        Route::get('/doctor/dashboard', function () {
             return view('pages.main-dashboard');
-        })->name('casher.dashboard');
+        })->name('doctor.dashboard');
     });
 
     // Rutas para usuarios con rol de usuario mesero (role waiter)
     Route::middleware(['role:3'])->group(function () {
-        Route::get('/waiter/dashboard', function () {
+        Route::get('/assistant/dashboard', function () {
             return view('pages.main-dashboard');
-        })->name('waiter.dashboard');
+        })->name('assistant.dashboard');
     });
 
     // Rutas para usuarios con rol de usuario cliente (role customer)
@@ -102,10 +113,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
             return view('pages.main-dashboard');
         })->name('customer.dashboard');
     });
-
-    Route::get('/unauthorized', function () {
-        return view('unauthorized');
-    })->name('unauthorized');
+    Route::get('/unauthorized/dashboard', function () {
+        return view('pages.main-dashboard');
+    })->name('unauthorized.dashboard');
     // Otras rutas que pueden estar protegidas por autenticación
     // Aquí puedes agregar más rutas para otros roles o configuraciones.
 });

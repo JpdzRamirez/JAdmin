@@ -3,7 +3,8 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\URL;
@@ -62,7 +63,27 @@ class CustomVerifyEmail extends Notification
             ]
         );
     }
+        /**
+     * Reenviar el correo de verificación.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function resend(Request $request)
+    {
+        $user = Auth::user();
 
+        // Verificar si el correo ya está verificado
+        if ($user->hasVerifiedEmail()) {
+            return redirect()->route('home')->with('status', 'Ya has verificado tu correo electrónico.');
+        }
+
+        // Enviar notificación personalizada
+        $user->notify(new CustomVerifyEmail());
+
+        // Redirigir a la ruta de verificación de correo electrónico
+        return redirect()->route('verify.email')->with('status', __('auth.registered-message-resend'));
+    }
     /**
      * Get the array representation of the notification.
      *

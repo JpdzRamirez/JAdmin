@@ -447,6 +447,13 @@ input {
     z-index: 1;
     overflow: overlay;
 }
+@media only screen and (min-height: 650px) {
+    .sign-up-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
 
 .container.right-panel-active .sign-up-container {
     transform: translateX(100%);
@@ -521,6 +528,8 @@ input {
     width: 50%;
     transform: translateX(0);
     transition: transform 0.6s ease-in-out;
+    overflow: auto;
+    overflow-x: hidden;
 }
 .overlay-panel .nav-link {
     position: absolute;
@@ -542,6 +551,11 @@ input {
     right: 0;
     transform: translateX(0);
 }
+.alert .alert-success{
+    background: #87AE47;
+    border-radius: 1em;
+    margin: 1em;
+}
 .terms_policy{
     padding-top: 2em;
     overflow-y: scroll;
@@ -549,6 +563,25 @@ input {
 .terms_policy-content{
 white-space: pre-line;
 text-align: justify;
+}
+.unauthorized{
+    padding-top: 2em;
+    overflow: auto;
+    overflow-x: hidden;
+}
+.unauthorized-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.unauthorized-content a{
+    width: 8em;
+    display: inline-flex;
+    flex-direction: column;
+}
+.unauthorized-content a button{
+    padding: 1em;
 }
 
 .container.right-panel-active .overlay-right {
@@ -659,7 +692,9 @@ text-align: justify;
 .fa-check:before {
     content: "\f00c";
 }
-
+.fa-paper-plane:before {
+    content: "\f1d8";
+}
 @font-face {
     font-family: "Font Awesome 6 Brands";
     font-style: normal;

@@ -7,7 +7,7 @@ use App\Models\User;
 
 use App\Contracts\UserRepositoryInterface;
 use App\Http\Requests\StoreUserRequest;
-
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -36,8 +36,10 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input): User
     {
-        // Usar la clase de validación StoreUserRequest para validar los datos
-        $validatedData = app(StoreUserRequest::class)->validate($input);
+        $rules = (new StoreUserRequest())->rules();
+
+        // Valida los datos
+        $validatedData = Validator::make($input, $rules)->validate();
 
         // Crear el usuario a través del repositorio
         return $this->userRepository->create([
