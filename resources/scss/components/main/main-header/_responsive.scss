@@ -18,24 +18,33 @@
         border-width: 4px;
     }
 }
-.avatar-group {
-    display: inline-flex;
+
+
+/* Dropdown profile */
+@media screen and (max-width: 991.5px) {
+    .notif-box .notif-scroll,
+    .messages-notif-box .message-notif-scroll,
+    .quick-actions .quick-actions-scroll {
+        max-height: calc(100vh - 200px);
+    }
+
+    .dropdown-user .dropdown-user-scroll {
+        max-height: calc(100vh - 132px);
+    }
 }
-.avatar-group .avatar + .avatar {
-    margin-left: -0.75rem;
+@media screen and (min-width: 991px) {
+    .navbar-header .dropdown-menu {
+        margin-top: 13px;
+    }
+    .navbar-header .dropdown-menu:after {
+        border-bottom: 8px solid #fff;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        content: "";
+        right: 10px;
+        top: -8px;
+        position: absolute;
+        z-index: 1001;
+    }
 }
-.avatar-group .avatar-xs + .avatar-xs {
-    margin-left: -0.40625rem;
-}
-.avatar-group .avatar-sm + .avatar-sm {
-    margin-left: -0.625rem;
-}
-.avatar-group .avatar-lg + .avatar-lg {
-    margin-left: -1rem;
-}
-.avatar-group .avatar-xl + .avatar-xl {
-    margin-left: -1.28125rem;
-}
-.avatar-group .avatar:hover {
-    z-index: 1;
-}
+

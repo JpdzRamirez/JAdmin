@@ -1,0 +1,20 @@
+.navbar[class*="bg-"] .btn-toggle {
+    background: rgba(19, 19, 19, 0.25) !important;
+    color: #ffffff !important;
+}
+.main-header .navbar-header .btn-toggle {
+    margin-right: 30px;
+    margin-left: 20px;
+}
+.btn-toggle {
+    font-size: 20px !important;
+    line-height: 20px;
+    padding: 0px !important;
+    background: transparent !important;
+    color: #2a2f5b !important;
+    height: 1em;
+}
+.btn-toggle:hover,
+.btn-toggle:focus {
+    opacity: 1;
+}

@@ -154,3 +154,24 @@
 .avatar-xxl.avatar-away::before {
     border-width: 4px;
 }
+.avatar-group {
+    display: inline-flex;
+}
+.avatar-group .avatar + .avatar {
+    margin-left: -0.75rem;
+}
+.avatar-group .avatar-xs + .avatar-xs {
+    margin-left: -0.40625rem;
+}
+.avatar-group .avatar-sm + .avatar-sm {
+    margin-left: -0.625rem;
+}
+.avatar-group .avatar-lg + .avatar-lg {
+    margin-left: -1rem;
+}
+.avatar-group .avatar-xl + .avatar-xl {
+    margin-left: -1.28125rem;
+}
+.avatar-group .avatar:hover {
+    z-index: 1;
+}
