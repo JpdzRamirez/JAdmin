@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'title'=>'Psicolombia',
     'welcome' => 'Bienvenido',
     'home' => 'Inicio',
     'owner' => 'JPDZSoftware',
@@ -25,7 +26,7 @@ return [
     'contact-services-fourth'=>'Ingeniería',
     'contact-button'=>'Contactar',
 
-    'contact-message-slogan'=>'Psicologia',
+    'contact-message-slogan'=>'Psicología en acción Colombia',
     'contact-message-title-verify'=>'Verificacion de correo',
     'contact-message-subtitle-verify'=>'Muchas gracias por registrarte',
     'contact-message-body-title-verify'=>'Mensaje de autenticación',

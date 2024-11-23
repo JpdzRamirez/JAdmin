@@ -1,0 +1,36 @@
+@media (min-width: 1200.5px) {
+    .page-sidebar {
+        transform: translateZ(0);
+        left: 0;
+    }
+}
+@media (max-width: 1200.5px) {
+    .page-wrapper.has-sidebar .page-inner {
+        margin-left: 0px;
+    }
+
+    .pagesidebar_open .page-sidebar {
+        transform: translate3d(0, 0, 0) !important;
+        max-width: unset;
+    }
+}
+@media (min-width: 576px) {
+    .page-inner {
+        padding-right: 30px;
+        padding-left: 30px;
+    }
+}
+@media (min-width: 991px) {
+    .main-panel > .container-full {
+        padding: 24px !important;
+    }
+
+    .page-wrapper {
+        overflow: hidden;
+    }
+
+    .page-navs {
+        padding-right: 2rem;
+        padding-left: 2rem;
+    }
+}

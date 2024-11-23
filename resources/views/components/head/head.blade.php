@@ -1,5 +1,4 @@
    <!-- Navigation-->
-   <div class="main-header">
     <div class="main-header-logo">
         <!-- Logo Header -->
         <div class="logo-header" data-background-color="dark">
@@ -258,7 +257,7 @@
            </div>
        </nav>
        <!-- End Navbar -->
-   </div>
+   
    @push('dashboardScripts')
        <script>
         document.addEventListener('DOMContentLoaded', function() {

@@ -34,6 +34,6 @@
 
         {{-- Blog --}}
         @include('components.sections.welcome.blog')
-
+        
     </main>
 @endsection

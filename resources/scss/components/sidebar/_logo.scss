@@ -1,0 +1,137 @@
+/* 
+----------------------🖼️🖼️🖼️🖼️🖼️🖼️🖼️🖼️--------------------------
+********************************************************************
+----------------------Logo Header Side Bar--------------------------
+********************************************************************
+*/
+
+.logo-header {
+    float: left;
+    width: 265px;
+    height: 70px;
+    line-height: 60px;
+    color: #333333;
+    z-index: 1001;
+    font-size: 17px;
+    font-weight: 400;
+    padding-left: 25px;
+    padding-right: 25px;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    position: relative;
+    transition: all 0.3s;
+}
+.logo-header .big-logo {
+    margin-right: 8px;
+}
+.logo-header .big-logo:hover {
+    text-decoration: none;
+}
+.logo-header .big-logo .logo-img {
+    width: 35px;
+    height: 35px;
+}
+.logo-header .logo {
+    color: #2a2f5b;
+    opacity: 1;
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.logo-header .logo:hover {
+    text-decoration: none;
+}
+.logo-header .logo .navbar-brand {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-right: 0px;
+}
+.logo-header .nav-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 18px;
+    z-index: 5;
+}
+.logo-header .navbar-toggler {
+    padding-left: 0px;
+    padding-right: 0px;
+    opacity: 0;
+    display: none;
+}
+.logo-header .navbar-toggler .navbar-toggler-icon {
+    height: unset;
+    width: unset;
+    display: block;
+    color: #545454;
+    font-size: 22px;
+}
+.logo-header .more {
+    background: transparent;
+    border: 0;
+    font-size: 22px;
+    padding: 0;
+    opacity: 0;
+    width: 0;
+    display: none;
+}
+.logo-header[data-background-color="grey"] {
+    background: #fafafe !important;
+}
+
+.logo-header[data-background-color="dark"] {
+    background: #1a2035 !important;
+}
+
+.logo-header[data-background-color="dark2"] {
+    background: #151a2b !important;
+}
+
+.logo-header[data-background-color="blue"] {
+    background: #1572e8 !important;
+}
+
+.logo-header[data-background-color="blue2"] {
+    background: #1269db !important;
+}
+.logo-header[data-background-color="purple"] {
+    background: #6861ce !important;
+}
+
+.logo-header[data-background-color="purple2"] {
+    background: #5c55bf !important;
+}
+
+.logo-header[data-background-color="light-blue"] {
+    background: #48abf7 !important;
+}
+
+.logo-header[data-background-color="light-blue2"] {
+    background: #3697e1 !important;
+}
+.logo-header[data-background-color="green"] {
+    background: #31ce36 !important;
+}
+
+.logo-header[data-background-color="green2"] {
+    background: #2bb930 !important;
+}
+.logo-header[data-background-color="orange"] {
+    background: #ffad46 !important;
+}
+
+.logo-header[data-background-color="orange2"] {
+    background: #ff9e27 !important;
+}
+.logo-header[data-background-color="red"] {
+    background: #f25961 !important;
+}
+
+.logo-header[data-background-color="red2"] {
+    background: #ea4d56 !important;
+}

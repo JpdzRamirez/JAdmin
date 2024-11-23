@@ -3,8 +3,8 @@
 
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
-          <h2>About</h2>
-          <p>Who we are</p>
+          <h2>Sobre</h2>
+          <p>Quienes somos</p>
         </div><!-- End Section Title -->
   
         <div class="container">
@@ -13,19 +13,18 @@
   
             <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                magna aliqua.
+                En Psicología en Acción, somos una empresa dedicada a cuidar la vida y el bienestar de nuestros pacientes. Nos comprometemos a brindar un acompañamiento profesional, cercano y empático en cada etapa del proceso terapéutico. 
               </p>
               <ul>
-                <li><i class="bi bi-check2-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
-                <li><i class="bi bi-check2-circle"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
-                <li><i class="bi bi-check2-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo</span></li>
+                <li><i class="bi bi-check2-circle"></i> <span>Somos una organización de alcance global.</span></li>
+                <li><i class="bi bi-check2-circle"></i> <span>Somos talento de Santander para Colombia</span></li>
+                <li><i class="bi bi-check2-circle"></i> <span>Somos innovación al servicio de la comunidad</span></li>
               </ul>
             </div>
   
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-              <p>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-              <a href="#" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+              <p>Cada día, trabajamos con pasión y dedicación para dar lo mejor de nosotros mismos, ofreciendo un servicio de calidad que promueva una vida más saludable y satisfactoria. En Psicología en Acción, creemos que el bienestar integral de la persona es esencial para alcanzar su desarrollo personal y emocional. Nos enfocamos en acompañar a cada individuo de manera única, respetando sus tiempos y necesidades, y ayudándolo a alcanzar su máximo potencial.</p>
+              <a href="#" class="read-more"><span>Leer Más</span><i class="bi bi-arrow-right"></i></a>
             </div>
   
           </div>

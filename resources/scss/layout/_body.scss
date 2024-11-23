@@ -1,3 +1,13 @@
 
 @use "../utils"  as *;
 
+body[data-background-color="dark"] .border-left,
+body[data-background-color="dark"] .border-right,
+body[data-background-color="dark"] .border-bottom,
+body[data-background-color="dark"] .border-top,
+body[data-background-color="dark"] .border-left,
+body[data-background-color="dark"] .border-right,
+body[data-background-color="dark"] .border-bottom,
+body[data-background-color="dark"] .border-top {
+    border-color: rgba(181, 181, 181, 0.1) !important;
+}

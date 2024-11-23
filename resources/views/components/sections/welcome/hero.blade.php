@@ -6,27 +6,27 @@
           <!-- Slide 1 -->
           <div class="carousel-item active">
             <div class="carousel-container">
-              <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Selecao</span></h2>
-              <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+              <h2 class="animate__animated animate__fadeInDown">Bienvenido a <br><span>Psicología en Acción Colombia</span></h2>
+              <p class="animate__animated animate__fadeInUp">La salud mental es un pilar fundamental para el bienestar integral de cualquier individuo. En el mundo actual, donde las exigencias son cada vez mayores, es crucial reconocer que cuidar de nuestra mente es tan importante como cuidar de nuestro cuerpo. La salud mental no solo se trata de la ausencia de trastornos, sino de un equilibrio emocional, de la capacidad de enfrentar los desafíos diarios con resiliencia y de buscar el apoyo necesario cuando más lo necesitamos.</p>
+              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Leer Más</a>
             </div>
           </div>
   
           <!-- Slide 2 -->
           <div class="carousel-item">
             <div class="carousel-container">
-              <h2 class="animate__animated animate__fadeInDown">Lorem Ipsum Dolor</h2>
-              <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+              <h2 class="animate__animated animate__fadeInDown">Te has preguntado sí🤔...</h2>
+              <p class="animate__animated animate__fadeInUp">¿Sientes un caos a tu alrededor? ¿Tratas de hacer las cosas, pero casi nada tiene sentido? ¿Nada cuaja como debe cuajar a pesar de las expectativas y planes de antemano? ¿Has sentido cuando tu alma está llorando?</p>
+              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Leer Más</a>
             </div>
           </div>
   
           <!-- Slide 3 -->
           <div class="carousel-item">
             <div class="carousel-container">
-              <h2 class="animate__animated animate__fadeInDown">Sequi ea ut et est quaerat</h2>
-              <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+              <h2 class="animate__animated animate__fadeInDown">Te comprendemos 🤗</h2>
+              <p class="animate__animated animate__fadeInUp">Todos pasamos por momentos difíciles algunas veces, esto te ayuda o te condena; tú eliges cuál de las dos deseas. Pero también a veces te arrastra la culpabilidad, de cosas pasadas o actuales; sin saber cuando tu alma está llorando.</p>
+              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Leer Más</a>
             </div>
           </div>
   
