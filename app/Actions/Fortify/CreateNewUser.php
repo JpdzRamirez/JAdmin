@@ -45,6 +45,7 @@ class CreateNewUser implements CreatesNewUsers
         return $this->userRepository->create([
             'name' => $validatedData['name_create'],
             'lastname' => $validatedData['lastname'],
+            'phone' => $validatedData['phone'],
             'email' => $validatedData['email_create'],
             'password' => Hash::make($validatedData['password_create']),
         ]);

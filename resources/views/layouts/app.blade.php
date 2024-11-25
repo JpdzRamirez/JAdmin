@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>
-        @yield('title', 'Restaurante' . ' ' . __('general.restaurant'))
+        @yield('title',  __('general.title'))
     </title>
 
     {{-- Fonts --}}    
@@ -23,6 +23,7 @@
     {{-- Scripts --}}
     @vite(['public/assets/css/app.css', 'resources/js/app.js'])
     @livewireStyles
+    @stack('appStyles')
 </head>
 
 <body class="font-sans antialiased">
@@ -55,9 +56,9 @@
     {{-- Lottie animations js --}}
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>    
     {{-- PERSONAL SCRIPTS --}}
-    <script src="{{ asset('assets/js/JAdmin.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugin/bootstrap-datepicker/datepicker.js') }}"></script>
+    <script src="{{ asset('assets/js/JAdmin.js') }}"></script>    
     <script src="{{ asset('assets/js/setting-demo.js') }}"></script>
-    <script src="{{ asset('assets/js/demo.js') }}"></script>
     <!-- Main JS File -->
     <script src="{{ asset('assets/js/preloader.js') }}"></script>
     @stack('dashboardScripts')

@@ -24,23 +24,23 @@
                                 {{-- Usuario verificado --}}
                                 @switch(auth()->user()->roles->id)
                                     @case(1)
+                                        <a href="{{ route('pos-register.dashboard') }}">Completar Registro</a>
+                                        @break
+                                    @case(2)
                                         <a href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
                                         @break
-
-                                    @case(2)
+                                    @case(3)
                                         <a href="{{ route('doctor.dashboard') }}">Doctor Dashboard</a>
                                         @break
-
-                                    @case(3)
+                                    @case(4)
                                         <a href="{{ route('assistant.dashboard')}}">Assitant Dashboard</a>
                                         @break
-
-                                    @case(4)
+                                    @case(5)
                                         <a href="{{ route('customer.dashboard') }}">Customer Dashboard</a>
                                         @break
                                     @default
                                     {{-- Si el usuario está verificado pero no cuenta con un rol --}}
-                                        <a href="{{ route('unauthorized.dashboard') }}">Default Dashboard</a>
+                                        <a href="{{ route('main.dashboard') }}">Dashboard</a>
                                 @endswitch
                             @else
                                 {{-- Si el correo no está verificado --}}

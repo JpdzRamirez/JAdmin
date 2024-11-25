@@ -37,6 +37,7 @@ class StoreUserRequest extends FormRequest
                 new PasswordRule(),
                 'confirmed', // debe coincidir con el campo de confirmación
             ],
+            'phone' => ['required', 'string', 'regex:/^[0-9]+$/', 'min:10', 'max:50'],
             'password_create_confirmation' => ['required', 'same:password_create'], // Confirmación de contraseña
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '', // Aceptación de términos
         ];

@@ -5,8 +5,14 @@
         </div>
         <div class="container">
         <div class="page-inner">
-            @switch(auth()->user()->rol)
+            @switch(auth()->user()->role)
                 @case(1)
+                    @livewire('pages.unauthorized')
+                    @push('dashboardScripts')
+                        <script src="{{ asset('assets/js/selector.js') }}"></script>
+                    @endpush
+                    @break
+                @case(2)
                     @livewire('pages.admin')
                     @push('dashboardScripts')                
                         {{-- Datatables --}}
@@ -18,17 +24,23 @@
                         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                     @endpush
                     @break
-                @case(2)
-                    @livewire('pages.admin')
-                    @break
                 @case(3)
                     @livewire('pages.admin')
                     @break
                 @case(4)
                     @livewire('pages.admin')
                     @break
+                @case(5)
+                    @livewire('pages.admin')
+                    @break
                 @default
-                    @livewire('pages.unauthorized')
+                    @push('appStyles')
+                        <link rel="stylesheet" href="{{ asset('assets/css/notFound.css') }}">
+                    @endpush
+                    @livewire('pages.not-found')
+                    @push('dashboardScripts') 
+                     <script src="{{ asset('assets/js/notFound.js') }}"></script>
+                    @endpush
             @endswitch
                 </div>
             </div>

@@ -3,23 +3,23 @@
 
 Definimos "información personal" como aquellos datos que identifican o pueden ser utilizados para identificar, contactar o localizar a una persona. La información personal que recolectamos está sujeta a esta política de privacidad, la cual puede ser actualizada según sea necesario.
 
-Al registrarte en Psicología en Acción, solicitamos tu dirección de correo electrónico. La información que recopilamos es utilizada para los siguientes fines generales: provisión de productos y servicios, facturación, identificación y autenticación, mejora de servicios, contacto y realización de estudios de investigación.
+Al registrarte en Psicología en Acción Colombia, solicitamos tu dirección de correo electrónico. La información que recopilamos es utilizada para los siguientes fines generales: provisión de productos y servicios, facturación, identificación y autenticación, mejora de servicios, contacto y realización de estudios de investigación.
 
-Como parte del proceso de compra y venta en nuestro sitio, podrías obtener la dirección de correo electrónico y/o de envío de tus clientes. Al aceptar nuestros Términos de Uso, te comprometes a utilizar esta información exclusivamente para comunicaciones relacionadas con Psicología en Acción y no para enviar mensajes comerciales no solicitados. Psicología en Acción no tolera el uso de spam y, por lo tanto, no está permitido añadir a tus clientes a listas de correo (electrónicas o físicas) sin su consentimiento explícito.
+Como parte del proceso de compra y venta en nuestro sitio, podrías obtener la dirección de correo electrónico y/o de envío de tus clientes. Al aceptar nuestros Términos de Uso, te comprometes a utilizar esta información exclusivamente para comunicaciones relacionadas con Psicología en Acción Colombia y no para enviar mensajes comerciales no solicitados. Psicología en Acción Colombia no tolera el uso de spam y, por lo tanto, no está permitido añadir a tus clientes a listas de correo (electrónicas o físicas) sin su consentimiento explícito.
 
 Lo que esto implica:
-Al registrarte, compartes tu información personal, la cual utilizamos conforme a esta política. Tu información solo se usará para comunicaciones relacionadas con Psicología en Acción, a menos que nos otorgues permiso expreso para otros fines. Te solicitamos no enviar mensajes no solicitados.
+Al registrarte, compartes tu información personal, la cual utilizamos conforme a esta política. Tu información solo se usará para comunicaciones relacionadas con Psicología en Acción Colombia, a menos que nos otorgues permiso expreso para otros fines. Te solicitamos no enviar mensajes no solicitados.
 
 2. Seguridad
 
-La seguridad de tu información personal es fundamental para nosotros. Cuando ingresas datos sensibles, como tu número de tarjeta de crédito, utilizamos tecnología de cifrado SSL (Secure Socket Layer) para proteger la transmisión de esta información. Los detalles de las tarjetas de crédito son almacenados y cifrados con encriptación AES-256. Como proveedor de servicios de nivel 1 PCI-DSS, cumplimos con todos los requisitos de seguridad PCI-DSS. Si tienes alguna pregunta sobre la seguridad en nuestro sitio, puedes contactarnos a través de info@psicologiaenaccion.com.
+La seguridad de tu información personal es fundamental para nosotros. Cuando ingresas datos sensibles, como tu número de tarjeta de crédito, utilizamos tecnología de cifrado SSL (Secure Socket Layer) para proteger la transmisión de esta información. Los detalles de las tarjetas de crédito son almacenados y cifrados con encriptación AES-256. Como proveedor de servicios de nivel 1 PCI-DSS, cumplimos con todos los requisitos de seguridad PCI-DSS. Si tienes alguna pregunta sobre la seguridad en nuestro sitio, puedes contactarnos a través de psicologiaenaccioncolombia@gmail.com.
 
 Lo que esto implica:
 Tu información sensible será encriptada de acuerdo con los estándares de la industria para mantenerla segura. Aunque seguimos las mejores prácticas, no podemos garantizar una seguridad absoluta al 100%.
 
 3. Divulgación de Información
 
-Psicología en Acción puede compartir información personal con terceros proveedores de servicios, siempre que estos se comprometan a proteger la información conforme a esta política y a utilizarla exclusivamente para la prestación de servicios para Psicología en Acción.
+Psicología en Acción Colombia puede compartir información personal con terceros proveedores de servicios, siempre que estos se comprometan a proteger la información conforme a esta política y a utilizarla exclusivamente para la prestación de servicios para Psicología en Acción Colombia.
 
 Podemos divulgar información personal en circunstancias específicas, como el cumplimiento de órdenes judiciales o en caso de violaciones a los Términos de Servicio. No vendemos ni proporcionamos información personal a otras empresas para fines de marketing de productos o servicios.
 
@@ -28,7 +28,7 @@ En ciertos casos, podemos divulgar tu información personal, como en el cumplimi
 
 4. Almacenamiento de la Información del Cliente
 
-Psicología en Acción conserva los derechos sobre el almacenamiento y las bases de datos de la aplicación, pero no reclama derechos sobre tu información personal. Respetamos tu propiedad sobre tus datos y nunca contactaremos a tus clientes ni utilizaremos tu información para competir contigo o dirigirnos a tu mercado.
+Psicología en Acción Colombia conserva los derechos sobre el almacenamiento y las bases de datos de la aplicación, pero no reclama derechos sobre tu información personal. Respetamos tu propiedad sobre tus datos y nunca contactaremos a tus clientes ni utilizaremos tu información para competir contigo o dirigirnos a tu mercado.
 
 Lo que esto implica:
 Tus datos son de tu propiedad y respetamos tu privacidad. No intentaremos competir ni contactar a tus clientes.

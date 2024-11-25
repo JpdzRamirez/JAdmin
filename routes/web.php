@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Laravel\Fortify\Http\Controllers\VerificationController;
+
 use App\Notifications\CustomVerifyEmail;
 
 /*🏠
@@ -47,19 +47,19 @@ Route::post('/authenticate/register', [RegisteredUserController::class, 'store']
 Route::redirect('/login', '/authenticate');
 Route::redirect('/register', '/authenticate');
 
-// Ruta de cuenta suspendida
+// Ruta de cuenta suspendida ❌💔
 Route::get('/account-suspended', function () {
     return view('auth.account-suspended'); // Cambia por la vista que hayas creado
 })->middleware(['guest'])->name('account.suspended');
 
 /* 📩📤📫🔑
------------------------------------------------------------
+--------------------------------------------------------------
 ************Validación de correo electrónico******************
 --------------------------------------------------------------
  */
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
-    return redirect()->route('unauthorized.dashboard'); // Se redirige al dashboard sin rol
+    return redirect()->route('pos-register.dashboard'); // Se redirige al dashboard sin rol
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::get('/email/verify-prompt', function () {
@@ -74,10 +74,10 @@ Route::get('/email/resend', [CustomVerifyEmail::class, 'resend'])
     ->middleware(['auth'])
     ->name('verification.resend');
 
-/* 🧑‍⚕️
-------------------------------------------------------
----Rutas para  REGISTRADOS Y NO AUTENTICADOS**********
-------------------------------------------------------
+/* 📩❌
+--------------------------------------------------------------------
+---Rutas para  REGISTRADOS Y NO AUTENTICADOS con Mail pendiente*****
+--------------------------------------------------------------------
 */
 Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(function () {
 
@@ -86,43 +86,60 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(fun
     })->name('unauthorized');
 
 });
+
+/* 📩✅❗📒
+-----------------------------------------------------------------------------------
+---Rutas para  REGISTRADOS Y AUTENTICADOS con Mail verificado y en posregistro*****
+-----------------------------------------------------------------------------------
+*/
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+
+    // Rutas para usuarios recién registrados (role 1)
+    Route::middleware(['role:1'])->group(function () {
+        Route::get('/pos-register/dashboard', function () {
+            return view('pages.main-dashboard');
+        })->name('pos-register.dashboard');
+    });
+
+});
 /*🔐✅
 **********************************************************
 --------------------ZONA YA VERIFICADA CON EMAIL----------
 **********************************************************
 */
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'active'])->group(function () {
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'active','posregister'])->group(function () {
 
-    // Rutas para usuarios con rol de administrador (role 1)
-    Route::middleware(['role:1'])->group(function () {
+    // Rutas para usuarios con rol de administrador (role 2)
+    Route::middleware(['role:2'])->group(function () {
         Route::get('/admin/dashboard', function () {
             return view('pages.main-dashboard');
         })->name('admin.dashboard');
     });
 
-    // Rutas para usuarios con rol de usuario cajero (role casher)
-    Route::middleware(['role:2'])->group(function () {
+    // Rutas para usuarios con rol de usuario Doctor (role 3)
+    Route::middleware(['role:3'])->group(function () {
         Route::get('/doctor/dashboard', function () {
             return view('pages.main-dashboard');
         })->name('doctor.dashboard');
     });
 
-    // Rutas para usuarios con rol de usuario mesero (role waiter)
-    Route::middleware(['role:3'])->group(function () {
+    // Rutas para usuarios con rol de usuario asistente (role 4)
+    Route::middleware(['role:4'])->group(function () {
         Route::get('/assistant/dashboard', function () {
             return view('pages.main-dashboard');
         })->name('assistant.dashboard');
     });
 
-    // Rutas para usuarios con rol de usuario cliente (role customer)
-    Route::middleware(['role:4'])->group(function () {
+    // Rutas para usuarios con rol de usuario cliente (role 5)
+    Route::middleware(['role:5'])->group(function () {
         Route::get('/customer/dashboard', function () {
             return view('pages.main-dashboard');
         })->name('customer.dashboard');
     });
-    Route::get('/unauthorized/dashboard', function () {
+    // Rutas main default 
+    Route::get('/dashboard', function () {
         return view('pages.main-dashboard');
-    })->name('unauthorized.dashboard');
+    })->name('main.dashboard');
     // Otras rutas que pueden estar protegidas por autenticación
     // Aquí puedes agregar más rutas para otros roles o configuraciones.
 });

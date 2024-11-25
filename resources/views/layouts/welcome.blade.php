@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    @include('components.header.headerwelcome')
+    @include('components.header.headwelcome')
 
     @yield('content')
 

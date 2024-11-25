@@ -299,15 +299,16 @@ input {
     visibility: hidden;
     position: absolute;
     transform: translate(0, 0);
-    background-color: #bfbfbf;
+    background-color: #eee;
     padding: 0.5rem;
     border-radius: 0.5rem;
     box-shadow: 0 4px 12px 0 gray;
-    width: auto;
+    width: 18rem;
+    left: -1em;
 }
 
 .password-validator.up {
-    top: 5rem;
+    top: -12rem;
 }
 
 .password-validator.down {
@@ -324,7 +325,7 @@ input {
     height: 0;
     border-left: 9px solid transparent;
     border-right: 9px solid transparent;
-    border-top: 10px solid #bfbfbf;
+    border-top: 10px solid #eee;
     transition-duration: 0.3s;
     transition-property: transform;
 }
@@ -334,10 +335,12 @@ input {
     z-index: -1;
     content: "";
     right: calc(50% - 10px);
-    top: -8px;
-    border-style: solid;
-    border-width: 0 10px 10px 10px;
-    border-color: transparent transparent #bfbfbf transparent;
+    top: 100%;
+    width: 0;
+    height: 0;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-top: 10px solid #eee;
     transition-duration: 0.3s;
     transition-property: transform;
 }

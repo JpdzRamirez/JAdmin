@@ -19,6 +19,7 @@ return new class extends Migration
 
         // Insertar los roles predeterminados
         DB::table('roles')->insert([
+            ['name' => 'unauthorized'],
             ['name' => 'admin'],
             ['name' => 'doctor'],
             ['name' => 'assistant'],

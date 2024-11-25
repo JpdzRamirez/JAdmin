@@ -16,23 +16,28 @@
                     <a href="#" class="social"><i class="fab fa-github"></i></a>
                 </div>
                 <span>{{ __('auth.oath-signup') }}</span>
-                <input type="text" class="form-control @error('name_create') is-invalid @enderror" placeholder="Name"  name="name_create" value="{{ old('name_create') }}" required autofocus autocomplete="Name" />
+                <input type="text" class="form-control @error('name_create') is-invalid @enderror" placeholder="{{ __('forms.register.name') }}"  name="name_create" value="{{ old('name_create') }}" required autofocus  />
                 @error('name_create')
                     <div class="error">{{ $message }}</div>
                 @enderror
                 
-                <input type="text" class="form-control @error('lastname') is-invalid @enderror" placeholder="Last Name" name="lastname" value="{{ old('lastname') }}" required autofocus autocomplete="Lastname" />
+                <input type="text" class="form-control @error('lastname') is-invalid @enderror" placeholder="{{ __('forms.register.lastname') }}" name="lastname" value="{{ old('lastname') }}" required   />
                 @error('lastname')
                     <div class="error">{{ $message }}</div>
                 @enderror
+
+                <input type="text" class="form-control @error('phone') is-invalid @enderror" placeholder="{{ __('forms.register.phone') }}" name="phone" value="{{ old('phone') }}" required   />
+                @error('phone')
+                    <div class="error">{{ $message }}</div>
+                @enderror
                 
-                <input type="email-create" class="form-control @error('email_create') is-invalid @enderror" placeholder="Email" name="email_create" value="{{ old('email_create') }}" required autocomplete="Email" />
+                <input type="email-create" class="form-control @error('email_create') is-invalid @enderror" placeholder="{{ __('forms.register.email') }}" name="email_create" value="{{ old('email_create') }}" required  />
                 @error('email_create')
                     <div class="error">{{ $message }}</div>
                 @enderror
                 
                 <div class="password-group">
-                    <input type="password" class="check-password  @error('password_create') is-invalid @enderror" placeholder="Password" name="password_create" required autocomplete="new-password" />
+                    <input type="password" class="check-password  @error('password_create') is-invalid @enderror" placeholder="{{ __('forms.register.password') }}" name="password_create" required  />
                     @error('password_create')
                         <div class="error">{{ $message }}</div>
                     @enderror
@@ -40,7 +45,7 @@
                     </div>
                 </div>
                 <div class="password-group">
-                    <input type="password" class="check-password @error('password_create_confirmation') is-invalid @enderror" placeholder="Confirm Password" name="password_create_confirmation" required autocomplete="new-password" />
+                    <input type="password" class="check-password @error('password_create_confirmation') is-invalid @enderror" placeholder="{{ __('forms.register.password-confirm') }}" name="password_create_confirmation" required  />
                     @error('password_create_confirmation')
                         <div class="error">{{ $message }}</div>
                     @enderror
@@ -186,6 +191,9 @@
             });
             // Si hay errores de validación, mostrar el formulario de registro
             @if ($errors->has('name_create') || $errors->has('lastname') || $errors->has('email_create') || $errors->has('password_create') || $errors->has('password_create_confirmation'))
+                container.classList.add("right-panel-active");
+            @endif
+            @if (session('register'))
                 container.classList.add("right-panel-active");
             @endif
         </script>
