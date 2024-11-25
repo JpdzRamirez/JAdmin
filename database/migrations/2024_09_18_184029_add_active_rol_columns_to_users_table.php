@@ -19,7 +19,7 @@ return new class extends Migration
 
             // Verifica si la columna 'rol' no existe antes de agregarla
             if (!Schema::hasColumn('users', 'role')) {
-                $table->unsignedBigInteger('role')->after('active')->default(4)->comment('Role of the user');
+                $table->unsignedBigInteger('role')->after('active')->default(0)->comment('Role of the user');
                 $table->foreign('role')->references('id')->on('roles')->onDelete('cascade');
             }
         });

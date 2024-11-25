@@ -4,7 +4,7 @@ namespace App\Livewire\Components\Head;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
-use App\Livewire\Actions\Logout;
+
 
 class DropdownProfile extends Component
 {
@@ -29,10 +29,12 @@ class DropdownProfile extends Component
     }
     public function logout()
     {
-        $logoutAction = new Logout();
-        $logoutAction();  // Llama al método de cierre de sesión
+        Auth::guard('web')->logout(); // Cierra la sesión del usuario
 
-        return redirect('/');  // Redirecciona al usuario a la página de inicio
+        request()->session()->invalidate(); // Invalida la sesión actual
+        request()->session()->regenerateToken(); // Regenera el token CSRF para seguridad
+    
+        return redirect('/'); // Redirecciona al usuario a la página de inicio
     }
     public function updateDropdownInfo($name, $email)
     {

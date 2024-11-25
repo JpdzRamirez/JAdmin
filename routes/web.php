@@ -17,15 +17,16 @@ Route::get('/', function () {
     return view('pages.main-welcome');
 })->name('home');
 
-/*🔏
+/*🔏💻
 ------------------------------------------------------------------
 *****************Ruta autenticación, login y register*************
 ------------------------------------------------------------------
  */
 
+// Cambia la ruta /login por /authenticate
 Route::get('/authenticate', [AuthenticatedSessionController::class, 'create'])
     ->middleware(['guest'])
-    ->name('login'); // Cambia la ruta /login por /authenticate
+    ->name('login'); 
 
 // Ruta para procesar la solicitud de login
 Route::post('/authenticate', [AuthenticatedSessionController::class, 'store'])
@@ -42,10 +43,16 @@ Route::post('/authenticate/register', [RegisteredUserController::class, 'store']
     ->middleware(['guest'])
     ->name('register.attempt');
 
+// Ruta perzonalizada para el loggin
 Route::redirect('/login', '/authenticate');
 Route::redirect('/register', '/authenticate');
 
-/* 📩📤📫
+// Ruta de cuenta suspendida
+Route::get('/account-suspended', function () {
+    return view('auth.account-suspended'); // Cambia por la vista que hayas creado
+})->middleware(['guest'])->name('account.suspended');
+
+/* 📩📤📫🔑
 -----------------------------------------------------------
 ************Validación de correo electrónico******************
 --------------------------------------------------------------
@@ -79,12 +86,12 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(fun
     })->name('unauthorized');
 
 });
-/*
+/*🔐✅
 **********************************************************
 --------------------ZONA YA VERIFICADA CON EMAIL----------
 **********************************************************
 */
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'active'])->group(function () {
 
     // Rutas para usuarios con rol de administrador (role 1)
     Route::middleware(['role:1'])->group(function () {

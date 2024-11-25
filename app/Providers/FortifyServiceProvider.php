@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
-use Laravel\Fortify\Fortify;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
+use Laravel\Fortify\Fortify;
 use App\Models\User;
 
 
@@ -33,12 +34,12 @@ class FortifyServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      */
     public function boot(): void
-    {   
+    {
         //Authenticate views
         Fortify::loginView(function () {
             return view('auth.authenticate'); // Cambiar a la nueva vista
         });
-    
+
         Fortify::registerView(function () {
             return view('auth.authenticate'); // Cambiar a la nueva vista si también quieres manejar el registro aquí
         });
@@ -51,7 +52,7 @@ class FortifyServiceProvider extends ServiceProvider
 
         // Limitar intentos de login
         RateLimiter::for('login', function (Request $request) {
-            $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())).'|'.$request->ip());
+            $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())) . '|' . $request->ip());
 
             return Limit::perMinute(5)->by($throttleKey);
         });
@@ -66,48 +67,43 @@ class FortifyServiceProvider extends ServiceProvider
             // Verifica las credenciales
             if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
                 $user = Auth::user();
-
-                // Verifica el rol del usuario y redirige
-                if ($user->role == 1) {
-                    return redirect('/admin/dashboard');
-                } elseif ($user->role == 2) {
-                    return redirect('/casher/dashboard');
-                } elseif ($user->role == 3) {
-                    return redirect('/waiter/dashboard');
-                } elseif ($user->role == 4) {
-                    return redirect('/customer/dashboard');
-                }
-
-                // Verifica si el usuario está activo
-                if (!$user->active=1) {
-                    Auth::logout();
-                    return redirect('/account-suspended')->withErrors(['account' => 'Tu cuenta ha sido suspendida.']);
-                }
-
-                return $user; // Autenticación exitosa
+                return $user; // Devuelve el usuario si la autenticación es exitosa
             }
 
             // Autenticación fallida, devolver mensaje de error
             // return redirect()->back()->withErrors(['login' => 'Las credenciales proporcionadas no coinciden con nuestros registros.']);
-            return null;
+            return null; // Devuelve null si las credenciales son incorrectas
         });
-         // Redirige según el rol después del registro
-         Event::listen(Registered::class, function ($event) {
+
+        // Redirección después del login según el rol
+        Fortify::redirects('login', function () {
+            $user = Auth::user();
+
+            if (!$user) {
+                return route('login'); // En caso de error, redirigir al login
+            }
+
+            switch ($user->role) {
+                case 1:
+                    return route('admin.dashboard');
+                case 2:
+                    return route('doctor.dashboard');
+                case 3:
+                    return route('assistant.dashboard');
+                case 4:
+                    return route('customer.dashboard');
+                default:
+                    return route('unauthorized.dashboard');
+            }
+        });
+        // Redirige según el rol después del registro
+        Event::listen(Registered::class, function ($event) {
             // Vuelve a consultar el usuario para asegurar que el rol esté actualizado
             $user = User::find($event->user->id);
             if (!$user->hasVerifiedEmail()) {
                 // Redirige a la página de solicitud de verificación
                 Redirect::setIntendedUrl('/email/verify-prompt');
             }
-            // if ($user->role == 1) {
-            //     Redirect::setIntendedUrl('/admin/dashboard');
-            // } elseif ($user->role == 2) {
-            //     Redirect::setIntendedUrl('/casher/dashboard');
-            // } elseif ($user->role == 3) {
-            //     Redirect::setIntendedUrl('/waiter/dashboard');
-            // } elseif ($user->role == 4) {
-            //     Redirect::setIntendedUrl('/customer/dashboard');
-            // }
         });
     }
 }
