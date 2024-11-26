@@ -14,4 +14,12 @@ return [
     'register.country'=> 'País de Nacimiento',
     'register.state'=> 'Departamento de Residencia',
     'register.city'=> 'Ciudad de Residencia',
+
+    'register.label-country' => 'País',
+    'register.label-state' => 'Departamento',
+    'register.label-city' => 'Ciudad',
+    'register.select-country' => 'Seleccione el País',
+    'register.select-state' => 'Seleccione el estado',
+    'register.select-city' => 'Seleccione la ciudad',
+    'register.select-PlaceHolder' => 'Buscar...',
 ];

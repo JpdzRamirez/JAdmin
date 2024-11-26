@@ -8,9 +8,6 @@
             @switch(auth()->user()->role)
                 @case(1)
                     @livewire('pages.unauthorized')
-                    @push('dashboardScripts')
-                        <script src="{{ asset('assets/js/selector.js') }}"></script>
-                    @endpush
                     @break
                 @case(2)
                     @livewire('pages.admin')

@@ -94,7 +94,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(fun
 */
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
 
-    // Rutas para usuarios recién registrados (role 1)
+    // Rutas para usuarios recién registrado unauthorized (role 1)
     Route::middleware(['role:1'])->group(function () {
         Route::get('/pos-register/dashboard', function () {
             return view('pages.main-dashboard');

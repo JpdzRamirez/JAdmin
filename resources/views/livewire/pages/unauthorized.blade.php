@@ -77,14 +77,15 @@
                     </div>
                     <hr>
                     {{-- FORM New Inputs --}}
-                    <form action="{{ route('user.update') }}" method="post">
+                    <form action="" method="post">
                       @csrf
                         <div class="row mb-3">
                           <div class="col-sm-3">
                               <label for="phone" class="mb-0 label-required">{{ __('forms.register.country') }}:</label>
                           </div>
                           <div class="col-sm-9 text-secondary">
-                            
+                            <livewire:components.tools.location-selector :selectedCountry="$country"
+                            :initState="$state" :initCity="$city" />
                           </div>
                         </div>
                     </form>

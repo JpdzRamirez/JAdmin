@@ -27,6 +27,9 @@
 </head>
 
 <body class="font-sans antialiased">
+    <div id="spinner" class="spinner hidden">{{__('general.spinner-message')}}
+        <span></span>
+    </div>
     <div id="preloader"></div>
     <div class="min-h-screen bg-gray-100 ">
         {{-- Page Content --}}
