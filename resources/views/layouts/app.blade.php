@@ -27,7 +27,8 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div id="spinner" class="spinner hidden">{{__('general.spinner-message')}}
+    <div id="spinner" class="ring hidden">
+        {{ __('general.spinner-message') }}
         <span></span>
     </div>
     <div id="preloader"></div>
@@ -59,7 +60,7 @@
     {{-- Lottie animations js --}}
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>    
     {{-- PERSONAL SCRIPTS --}}
-    <script src="{{ asset('assets/js/plugin/bootstrap-datepicker/datepicker.js') }}"></script>
+    <script src="{{ asset('assets/js/plugin/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
     <script src="{{ asset('assets/js/JAdmin.js') }}"></script>    
     <script src="{{ asset('assets/js/setting-demo.js') }}"></script>
     <!-- Main JS File -->

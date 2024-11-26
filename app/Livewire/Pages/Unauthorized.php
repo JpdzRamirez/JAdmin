@@ -11,10 +11,19 @@ class Unauthorized extends Component
     public $city;
     
     protected $listeners = [
-        "countryBinding"=> "updateCountry",
-        "stateBinding"=> "updateState",
-        "cityBinding"=> "updateCity",
+        "bindingLocation"=> "updateLocation",
     ];
+    /* 🔛🔙✔️
+    *************************************************
+    ---------------Events binding---------------------
+    **************************************************
+    */
+    public function updateLocation($data)
+    {
+        $this->country = $data['country'];
+        $this->state = $data['state'];
+        $this->city = $data['city'];
+    }
     public function render()
     {
         return view('livewire.pages.unauthorized');

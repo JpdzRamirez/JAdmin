@@ -15,8 +15,10 @@
     </div>
   </div>
   @push('dashboardScripts')
+
   <script src="{{ asset('assets/js/locationSelector/selectorLocation.js') }}"></script>
   <script>
+    const loadingSpinner = document.getElementById('spinner');
     // Variables constantes
     let initialized = false;
     const locationComponent = document.getElementById("locationComponent");
@@ -108,8 +110,9 @@
           if (isLocationUpdating) return;  // Si ya está actualizando, salir
   
           isLocationUpdating = true;
-          loadingSpinner.classList.add('hidden');     
-  
+          loadingSpinner.classList.add('hidden');             
+          $(".card-form").removeClass('overlay-card'); 
+          
           let newSelectedCountry = livewireLocationComponent.get('selectedCountry');
           let newSelectedState = livewireLocationComponent.get('selectedState');
           let newSelectedCity = livewireLocationComponent.get('selectedCity');

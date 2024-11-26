@@ -1,0 +1,21 @@
+@use "../../../utils" as *;
+
+.container-datePicker {    
+    
+    @media screen and (max-width: 399px) {
+      #fa-1,
+      #fa-2  {
+        display: none;
+      }
+    }
+    
+    @media screen and (max-width: 726px) {
+      .datepicker-dropdown.datepicker-orient-right:before {
+        right: calc(50% - 6px);
+      }
+    
+      .datepicker-dropdown.datepicker-orient-right:after {
+        right: calc(50% - 5px);
+      }
+    }
+  }

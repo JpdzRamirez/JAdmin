@@ -93,7 +93,10 @@ class LocationSelector extends Component
         $this->geoLocationHandler = App::make(GeoLocationHandler::class);
         $data = $this->geoLocationHandler->syncLocation($geoLocation);
         $this->selectedCity = $data['city'];
-        $this->dispatch('bindingLocation', $data);
+        $this->dispatch(
+            'bindingLocation',
+            data: $data
+        )->to('pages.unauthorized');        
     }
     public function render()
     {

@@ -25,7 +25,7 @@
     {{-- Si está autenticado, verificado mail, sin pos-registro --}}
     <div class="row">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card card-form">
                 <div class="card-header">
                     <div class="card-title">{{ __('navigation.pos-register.title') }}</div>
                     <h2 style="text-align: center">{!! __('navigation.pos-register.sub-title', ['name' => Auth::user()->name]) !!}</h2>
@@ -81,12 +81,44 @@
                       @csrf
                         <div class="row mb-3">
                           <div class="col-sm-3">
-                              <label for="phone" class="mb-0 label-required">{{ __('forms.register.country') }}:</label>
+                              <label for="phone" class="mb-0 label-required">{{ __('forms.register.location') }}:</label>
                           </div>
                           <div class="col-sm-9 text-secondary">
                             <livewire:components.tools.location-selector :selectedCountry="$country"
                             :initState="$state" :initCity="$city" />
                           </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <label class="mb-3 form-label label-required" id="labelStartDateSingle"
+                                    for="born_date">{{ __('forms.register.date-born') }}</label>
+                            </div>
+                            <div class="col-sm-9 container-datePicker input-group date" style="width: inherit" id="dateSingleInput">
+                                    <input type="text" name="born_date" id="born_date" class="form-control" placeholder=""
+                                        value="">
+                                    <div class="input-group-addon input-group-text">
+                                        <span class="glyphicon glyphicon-th"></span>
+                                        <span class="fa fa-calendar" id="fa-1"></span>
+                                    </div> 
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <label for="address" class="mb-0 label-required">{{ __('forms.register.address') }}:</label>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <textarea type="text" rows="1" class="form-control" id="address" 
+                                    value=""></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <label for="address_complement" class="mb-0 label-required">{{ __('forms.register.address_complement') }}:</label>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <textarea type="text" rows="1" class="form-control" id="address_complement" 
+                                    value=""></textarea>
+                            </div>
                         </div>
                     </form>
 
@@ -97,3 +129,6 @@
     </div>
     {{-- Si está autenticado, verificado mail, con pos-registro y pendiente de asignación de rol --}}
 </div>
+@push('dashboardScripts')
+<script src="{{ asset('assets/js/datepicker.js') }}"></script>
+@endpush

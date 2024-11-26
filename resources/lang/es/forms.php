@@ -11,13 +11,15 @@ return [
     'register.password'=> 'Contraseña',
     'register.password-confirm'=> 'Confirmar Contraseña',
 
-    'register.country'=> 'País de Nacimiento',
-    'register.state'=> 'Departamento de Residencia',
-    'register.city'=> 'Ciudad de Residencia',
-
-    'register.label-country' => 'País',
-    'register.label-state' => 'Departamento',
-    'register.label-city' => 'Ciudad',
+    // Pos Register
+    'register.date-born'=> 'Fecha de Nacimiento',
+    'register.address'=> 'Dirección de Residencia',
+    'register.address_complement'=> 'Dirección complementaria',
+    'register.location'=> 'Lugar de Residencia',
+    // Location Component
+    'register.label-country' => 'País de Residencia',
+    'register.label-state' => 'Departamento de Residencia',
+    'register.label-city' => 'Ciudad de Residencia',
     'register.select-country' => 'Seleccione el País',
     'register.select-state' => 'Seleccione el estado',
     'register.select-city' => 'Seleccione la ciudad',

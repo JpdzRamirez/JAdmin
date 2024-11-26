@@ -38851,6 +38851,180 @@ label {
   display: block !important;
 }
 
+.container-datePicker input {
+  border: 1px solid #282C34 !important;
+  border-radius: 4px !important;
+  box-sizing: border-box;
+  background-color: #FFFFFF !important;
+  color: #303030 !important;
+  font-size: 16px !important;
+  letter-spacing: 1px;
+  position: relative;
+}
+.container-datePicker input:focus {
+  box-shadow: none !important;
+  border: 1px solid #00BBFF !important;
+  outline-width: 0;
+}
+.container-datePicker .fa-calendar {
+  font-size: 20px;
+  color: #00BBFF;
+}
+.container-datePicker .input-daterange #fa-1 {
+  left: calc(12% - 30px);
+}
+.container-datePicker .input-daterange #fa-2 {
+  left: calc(63% - 30px);
+}
+.container-datePicker .input-daterange .fa-calendar {
+  position: absolute;
+  top: 10px;
+  z-index: 1000;
+}
+.container-datePicker .form-control-placeholder {
+  position: absolute;
+  top: -10px !important;
+  padding: 12px 2px 0 2px;
+  opacity: 0.5;
+}
+.container-datePicker #end_date-label {
+  left: calc(50% + 4px);
+}
+.container-datePicker .form-control:focus + .form-control-placeholder,
+.container-datePicker .form-control:valid + .form-control-placeholder {
+  font-size: 95%;
+  top: 10px;
+  transform: translate3d(0, -100%, 0);
+  opacity: 1;
+}
+
+.datepicker {
+  /*Weekday title*/
+}
+.datepicker ::-moz-placeholder {
+  color: #282C34;
+  opacity: 1;
+}
+.datepicker ::placeholder {
+  color: #282C34;
+  opacity: 1;
+}
+.datepicker :-ms-input-placeholder {
+  color: #282C34;
+}
+.datepicker ::-ms-input-placeholder {
+  color: #282C34;
+}
+.datepicker button:focus {
+  box-shadow: none !important;
+  outline-width: 0;
+}
+.datepicker .datepicker {
+  background-color: #FFFFFF;
+  border-radius: 0 !important;
+  align-content: center !important;
+  padding: 0 !important;
+}
+.datepicker .datepicker-dropdown {
+  top: 180px !important;
+  left: calc(50% - 173.5px) !important;
+  border-right: #B0B0B0;
+  border-left: #B0B0B0;
+}
+.datepicker .datepicker-dropdown.datepicker-orient-left:before {
+  left: calc(50% - 6px) !important;
+}
+.datepicker .datepicker-dropdown.datepicker-orient-left:after {
+  left: calc(50% - 5px) !important;
+  border-bottom-color: #B0B0B0;
+}
+.datepicker .datepicker-dropdown.datepicker-orient-right:after {
+  border-bottom-color: #B0B0B0;
+}
+.datepicker .datepicker table tr td.today, .datepicker span.focused {
+  border-radius: 50% !important;
+  background-image: linear-gradient(#FFF3E0, #FFE0B2);
+}
+.datepicker thead tr:nth-child(2) {
+  background-color: #B0B0B0 !important;
+}
+.datepicker thead tr:nth-child(3) th {
+  font-weight: bold !important;
+  padding: 0;
+  color: #BDBDBD !important;
+}
+.datepicker tbody tr td {
+  padding: 0px !important;
+}
+.datepicker tfoot tr:nth-child(2) th {
+  padding: 10px !important;
+  border-top: 1px solid #CFD8DC !important;
+}
+.datepicker .cw {
+  font-size: 14px !important;
+  background-color: #E8EAF6 !important;
+  border-radius: 0px !important;
+  padding: 0px 20px !important;
+  margin-right: 10px solid #FFFFFF !important;
+}
+.datepicker .old, .datepicker .day, .datepicker .new {
+  border-radius: 0px !important;
+}
+.datepicker .day.old, .datepicker .day.new {
+  color: #E0E0E0 !important;
+}
+.datepicker .day.old:hover, .datepicker .day.new:hover {
+  border-radius: 50% !important;
+}
+.datepicker .old-day:hover, .datepicker .day:hover, .datepicker .new-day:hover, .datepicker .month:hover, .datepicker .year:hover, .datepicker .decade:hover, .datepicker .century:hover {
+  border-radius: 50% !important;
+  background-color: #eee;
+}
+.datepicker .active {
+  border-radius: 50% !important;
+  background-image: linear-gradient(#00BBFF, #00BBFF) !important;
+  color: #FFFFFF !important;
+}
+.datepicker .range-start, .datepicker .range-end {
+  border-radius: 50% !important;
+  background-image: linear-gradient(#00BBFF, #00BBFF) !important;
+}
+.datepicker .range {
+  background-color: #B0B0B0 !important;
+}
+.datepicker .prev, .datepicker .next, .datepicker .datepicker-switch {
+  border-radius: 0 !important;
+  padding: 10px 10px 10px 10px !important;
+  font-size: 18px;
+  opacity: 0.7;
+  color: #fff;
+}
+.datepicker .prev:hover, .datepicker .next:hover, .datepicker .datepicker-switch:hover {
+  background-color: inherit !important;
+  opacity: 1;
+}
+
+.datepicker td, th {
+  text-align: center;
+  padding: 4px 6px;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 399px) {
+  .container-datePicker #fa-1,
+  .container-datePicker #fa-2 {
+    display: none;
+  }
+}
+@media screen and (max-width: 726px) {
+  .container-datePicker .datepicker-dropdown.datepicker-orient-right:before {
+    right: calc(50% - 6px);
+  }
+  .container-datePicker .datepicker-dropdown.datepicker-orient-right:after {
+    right: calc(50% - 5px);
+  }
+}
+
 /*     	Modal     */
 .modal {
   position: fixed;
@@ -39013,6 +39187,100 @@ label {
 .modal-content {
   border-radius: 0.4rem;
   border: 0 !important;
+}
+
+@keyframes animateC {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes animate {
+  0% {
+    transform: rotate(45deg);
+  }
+  100% {
+    transform: rotate(405deg);
+  }
+}
+.ring {
+  position: fixed;
+  z-index: 10;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 150px;
+  background: transparent;
+  border: 3px solid #3c3c3c;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 150px;
+  font-family: sans-serif;
+  font-size: 20px;
+  color: #FFFFFF;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px #00BBFF;
+  box-shadow: 0 0 20px #282C34;
+}
+.ring span {
+  display: block;
+  position: absolute;
+  top: calc(50% - 2px);
+  left: 50%;
+  width: 50%;
+  height: 4px;
+  background: transparent;
+  transform-origin: left;
+  animation: animate 2s linear infinite;
+}
+.ring span:before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #00BBFF;
+  top: -6px;
+  right: -8px;
+  box-shadow: 0 0 20px #00BBFF;
+}
+
+.ring:before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  width: inherit;
+  height: inherit;
+  border: 3px solid transparent;
+  border-top: 3px solid #00BBFF;
+  border-right: 3px solid #00BBFF;
+  border-radius: 50%;
+  animation: animateC 2s linear infinite;
+}
+
+.ring.hidden {
+  opacity: 0;
+  display: none;
+  pointer-events: none;
+}
+
+.card-form.overlay-card:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-radius: 1em;
+  z-index: 0;
+  height: 100%;
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+  background-color: rgba(60, 60, 60, 0.3647058824);
 }
 
 .border-dark {

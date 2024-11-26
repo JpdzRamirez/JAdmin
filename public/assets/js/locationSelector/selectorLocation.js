@@ -1,4 +1,4 @@
-const loadingSpinner = document.getElementById('spinner');
+
 class DynamicSelect {
 
     constructor(element, options = {}, selection  = null, idSelector,spanLang) {
@@ -113,6 +113,7 @@ class DynamicSelect {
                 if(this.element.querySelector('input').id!="selectedCity"){
                     Livewire.dispatch('selectorCharger', { optionSelected: option.getAttribute('data-value'), idSelector: this.element.querySelector('input').id });
                     loadingSpinner.classList.remove('hidden');
+                    $(".card-form").addClass('overlay-card'); 
                 }else{
                     let geoLocation = {
                         country: previousSelectedCountry,
