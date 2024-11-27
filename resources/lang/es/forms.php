@@ -16,10 +16,12 @@ return [
     'register.address'=> 'Dirección de Residencia',
     'register.address_complement'=> 'Dirección complementaria',
     'register.location'=> 'Lugar de Residencia',
+    'register.location-born'=> 'Lugar de Nacimiento',
     // Location Component
     'register.label-country' => 'País de Residencia',
     'register.label-state' => 'Departamento de Residencia',
     'register.label-city' => 'Ciudad de Residencia',
+    'register.label-country-born' => 'País de Nacimiento',
     'register.select-country' => 'Seleccione el País',
     'register.select-state' => 'Seleccione el estado',
     'register.select-city' => 'Seleccione la ciudad',

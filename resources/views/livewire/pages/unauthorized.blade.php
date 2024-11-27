@@ -32,6 +32,20 @@
                     <div class="card-category">
                         <span>{{ __('navigation.pos-register.span') }}</span>
                     </div>
+                    <div class="row mb-3">
+                        <div class="alert alert-danger">
+                            <ul>
+                                @if ($errors->any())
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                @elseif (session('success'))
+                                    <li>{{ session('success') }}</li>
+                                @endif
+        
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     {{-- Name --}}
@@ -79,6 +93,29 @@
                     {{-- FORM New Inputs --}}
                     <form action="" method="post">
                       @csrf
+                      <div class="row mb-3">
+                        <div class="col-sm-3">
+                            <label for="phone" class="mb-0 label-required">Foto de Perfil:</label>
+                        </div>
+                        <div class="col-sm-9 text-secondary d-flex align-items-center flex-column">
+                            <div class="avatar avatar-xxl">
+                                @if ($photo instanceof \Livewire\TemporaryUploadedFile)
+                                    <img id="profile-photo" class="avatar-img rounded-circle"
+                                        src="{{ $photo->temporaryUrl() }}" />
+                                @elseif ($photo)
+                                    <img id="profile-photo" class="avatar-img rounded-circle"
+                                        src="{{ $photo }}" />
+                                @else
+                                <img src="../assets/img/jm_denis.jpg" alt="..." class="avatar-img rounded-circle">
+                                @endif                                
+                            </div>
+                                <input id="photo"
+                                class="form-control-file"
+                                wire:model="photo" name="photo" type="file"
+                                accept=".jpg,.jpeg,.png" />
+                        </div>
+                      </div>
+
                         <div class="row mb-3">
                           <div class="col-sm-3">
                               <label for="phone" class="mb-0 label-required">{{ __('forms.register.location') }}:</label>
@@ -88,6 +125,14 @@
                             :initState="$state" :initCity="$city" />
                           </div>
                         </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <label for="countryBorn" class="mb-0 label-required">{{ __('forms.register.location-born') }}:</label>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                              <livewire:components.tools.country-born :selectedCountryBorn="$country_born"/>
+                            </div>
+                          </div>
                         <div class="row mb-3">
                             <div class="col-sm-3">
                                 <label class="mb-3 form-label label-required" id="labelStartDateSingle"
@@ -124,10 +169,10 @@
 
                 </div>
             </div>
+            {{-- Si está autenticado, verificado mail, con pos-registro y pendiente de asignación de rol --}}
         </div>
-
     </div>
-    {{-- Si está autenticado, verificado mail, con pos-registro y pendiente de asignación de rol --}}
+    
 </div>
 @push('dashboardScripts')
 <script src="{{ asset('assets/js/datepicker.js') }}"></script>

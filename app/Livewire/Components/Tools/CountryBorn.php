@@ -12,19 +12,22 @@ use Livewire\Component;
 
 class CountryBorn extends Component
 {   
-    
-    public $customLocationId;
-    public $countries = [];
+    public $customCountryBornId;
 
-    public $selectedCountry;
+    public $selectedCountryBorn;
+    public $countryBorn;
 
-    protected CountryServiceInterface $countryService;
+    protected $listeners=['selectorCountryBornCharger'];
 
-    public function mount(CountryServiceInterface $countryService, $customLocationId = "countryComponent")
+    public function mount($customCountryBornId = "countryBornComponent")
     {
-        $this->countryService = $countryService;
-        $this->customLocationId = $customLocationId;
-        $this->fetchCountries();
+        $this->customCountryBornId = $customCountryBornId;
+    }
+
+    public function selectorCountryBornCharger(string $optionSelected)
+    {
+        $this->selectedCountryBorn = $optionSelected;
+        $this->dispatch('bindingCountryBorn', $optionSelected);
     }
     public function render()
     {

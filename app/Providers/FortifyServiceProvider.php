@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Route;
+
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Laravel\Fortify\Fortify;
