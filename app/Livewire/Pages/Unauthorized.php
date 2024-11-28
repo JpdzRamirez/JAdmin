@@ -20,7 +20,9 @@ use Livewire\WithFileUploads;
 class Unauthorized extends Component
 {   
     use WithFileUploads;
+    public $pos_register=true;
     public $photo;
+    public $description;
     public $country;
     public $state;
     public $city;

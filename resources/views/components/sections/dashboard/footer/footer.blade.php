@@ -1,18 +1,17 @@
 {{-- Footer--}}
-<footer class="footer">
     <div class="container-fluid d-flex justify-content-between">
       <nav class="pull-left">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="http://www.themekita.com">
-              ThemeKita
+            <a class="nav-link" href="{{ route('home') }}">
+              
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"> Help </a>
+            <a class="nav-link" target="_blank" href="https://wa.me/573177163494"> {{ __('general.help') }} </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"> Licenses </a>
+            <a class="nav-link" target="_blank" href="https://wa.me/573177163494"> {{ __('general.license') }} </a>
           </li>
         </ul>
       </nav>
@@ -23,9 +22,8 @@
         </div>
       </div>
       <div>
-        Distributed by
-        <a target="_blank" href="https://themewagon.com/">JPDZSoftware.com</a>.
+        {{ __('general.gratefulness') }}
+        <a target="_blank" href="https://github.com/JpdzRamirez">JPDZSoftware.com</a>.
       </div>
     </div>
-  </footer>
 

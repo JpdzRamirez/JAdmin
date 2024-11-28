@@ -22,10 +22,13 @@
             </li>
         </ul>
     </div>
-    {{-- Si está autenticado, verificado mail, sin pos-registro --}}
+
+    {{-- Card ZONE --}}
     <div class="row">
         <div class="col-md-12">
             <div class="card card-form">
+                {{-- Si está autenticado, verificado mail, sin pos-registro --}}
+                @if(!Auth::user()->pos_register)
                 <div class="card-header">
                     <div class="card-title">{{ __('navigation.pos-register.title') }}</div>
                     <h2 style="text-align: center">{!! __('navigation.pos-register.sub-title', ['name' => Auth::user()->name]) !!}</h2>
@@ -103,7 +106,7 @@
                         @endif
                     </div>  
                     {{-- FORM New Inputs --}}                    
-                    <form wire:submit.prevent="save">                  
+                    <form wire:submit.prevent="save">                      
                       <div class="row mb-3">
                         <div class="col-sm-3">
                             <label for="phone" class="mb-0 label-required">Foto de Perfil:</label>
@@ -127,6 +130,15 @@
                         </div>
                       </div>
                         <hr>
+                        <div class="row mb-3">
+                            <div class="form-group">
+                                <label for="description">{{ __('forms.register.description') }}</label>
+                                <textarea class="form-control" name="description" wire:model="description"
+                                placeholder="{{ __('forms.register.description-placeholder') }}" 
+                                id="description" rows="5">
+                                </textarea>
+                              </div>
+                        </div>
                         <div class="row mb-3">
                           <div class="col-sm-3">
                               <label for="phone" class="mb-0 label-required">{{ __('forms.register.location') }}:</label>
@@ -223,12 +235,14 @@
                                      
                     </form>
                     </div>
+                {{-- Si está autenticado, verificado mail, con pos-registro y pendiente de asignación de rol --}}
+                @else
+                    
+                @endif
                 </div>
-            </div>
-            {{-- Si está autenticado, verificado mail, con pos-registro y pendiente de asignación de rol --}}
+            </div>            
         </div>
-    </div>
-    
+    </div>    
 </div>
 @push('dashboardScripts')
 <script src="{{ asset('assets/js/datepicker.js') }}"></script>

@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->text('description')->nullable();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->text('description')->nullable();            
             $table->string('password');
             $table->string('phone', 15);
             $table->string('country', 50)->nullable();
@@ -24,10 +23,12 @@ return new class extends Migration
             $table->string('city', 50)->nullable();
             $table->text('address')->nullable();
             $table->date('date_born')->nullable();
-            $table->text('address_complement')->nullable();   
-            $table->rememberToken();
+            $table->text('address_complement')->nullable();               
             $table->foreignId('current_team_id')->nullable();
             $table->longText('image_base64')->nullable();
+            $table->boolean('pos_register')->default(false);
+            $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
 

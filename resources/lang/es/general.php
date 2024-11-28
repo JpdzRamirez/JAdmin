@@ -3,6 +3,9 @@
 return [
     'title'=>'Psicolombia',
     'welcome' => 'Bienvenido',
+    'help'=> 'Ayuda',
+    'license'=> 'Licenciamiento',
+    'gratefulness' => 'Distribuido por: ',
     'home' => 'Inicio',
     'owner' => 'JPDZSoftware',
     'header-menu.home'=>'Home',

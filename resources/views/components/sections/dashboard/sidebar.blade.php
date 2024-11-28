@@ -1,7 +1,7 @@
     {{-- Sidebar --}}
     <div class="sidebar" data-background-color="dark">
+        {{-- Logo Header --}}
         <div class="sidebar-logo">
-          {{-- Logo Header --}}
           <div class="logo-header" data-background-color="dark">
             <a href="index.html" class="logo">
               <img
@@ -23,8 +23,8 @@
               <i class="gg-more-vertical-alt"></i>
             </button>
           </div>
-          {{-- End Logo Header --}}
         </div>
+        {{-- End Logo Header --}}
         <div class="sidebar-wrapper scrollbar scrollbar-inner">
           <div class="sidebar-content">
             <ul class="nav nav-secondary">
@@ -42,8 +42,8 @@
                 <div class="collapse" id="dashboard">
                   <ul class="nav nav-collapse">
                     <li>
-                      <a href="../demo1/index.html">
-                        <span class="sub-item">Dashboard 1</span>
+                      <a href="{{ route('main.dashboard') }}">
+                        <span class="sub-item">Página principal</span>
                       </a>
                     </li>
                   </ul>

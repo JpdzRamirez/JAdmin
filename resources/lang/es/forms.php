@@ -15,6 +15,8 @@ return [
     'register.password-confirm'=> 'Confirmar Contraseña',
 
     // Pos Register
+    'register.description'=> 'Brindanos una descripción tuya:',
+    'register.description-placeholder'=> '¿Quién eres?, ¿A que te dedicas?, Gustos',
     'register.date-born'=> 'Fecha de Nacimiento',
     'register.address'=> 'Dirección de Residencia',
     'register.address_complement'=> 'Dirección complementaria',
