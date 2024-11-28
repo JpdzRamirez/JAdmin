@@ -11,7 +11,7 @@
   <script>
       const countryBornComponent = document.getElementById("countryBornComponent");
       const wireCountryBornId = countryBornComponent.getAttribute('wire:id');
-      const countryBornInput = document.getElementById("countryBorn");
+      
 
       let countryBornDispatched = false;
       let selectedCountryBorn = @json($selectedCountryBorn);
@@ -80,14 +80,6 @@
                 isCountryBornUpdating = false; // Reiniciar flag si no hay cambios
               }
           }
-      });
-      countryBornInput.addEventListener("change", () => {
-          let livewireCountryBornComponent = Livewire.find(wireCountryBornId);
-          let newSelectedCountryBorn = livewireCountryBornComponent.get('selectedCountryBorn');
-
-          countryBornDispatched = true;
-          Livewire.dispatch('selectorCountryBornCharger'); // Usa el segundo elemento
-          
       });
   </script>
 @endpush

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('state', 50)->nullable();
             $table->string('city', 50)->nullable();
             $table->text('address')->nullable();
+            $table->date('date_born')->nullable();
             $table->text('address_complement')->nullable();   
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();

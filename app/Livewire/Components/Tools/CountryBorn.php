@@ -2,12 +2,6 @@
 
 namespace App\Livewire\Components\Tools;
 
-use App\Contracts\CountryServiceInterface;
-
-use App\Services\GeoLocationHandler;
-
-use Illuminate\Support\Facades\App;
-
 use Livewire\Component;
 
 class CountryBorn extends Component

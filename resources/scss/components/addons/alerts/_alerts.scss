@@ -1,4 +1,4 @@
-@use "../../utils"  as *;
+@use "../../../utils"  as *;
 
 .jqstooltip {
     box-sizing: content-box;
@@ -79,28 +79,32 @@
 }
 
 .alert-info {
-    border-left: 4px solid #48abf7;
+    border-left: 1em solid #48abf7;
+    background-color: #9bcdf3;
 }
 .alert-info [data-notify="icon"]:before {
     background: #48abf7;
 }
 
 .alert-success {
-    border-left: 4px solid #31ce36;
+    border-left: 1em solid #31ce36;
+    background-color: #a5f7a8;
 }
 .alert-success [data-notify="icon"]:before {
     background: #31ce36;
 }
 
 .alert-warning {
-    border-left: 4px solid #ffad46;
+    border-left: 1em solid #ffad46;
+    background-color: #ffdbae;
 }
 .alert-warning [data-notify="icon"]:before {
     background: #ffad46;
 }
 
 .alert-danger {
-    border-left: 4px solid #f25961;
+    border-left: 1em solid #f25961;
+    background-color: #f5d5d5;;
 }
 .alert-danger [data-notify="icon"]:before {
     background: #f25961;

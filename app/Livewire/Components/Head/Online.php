@@ -20,7 +20,7 @@ class Online extends Component
     public function mount()
     {
         $this->statusMessage = 'Active';
-        $this->color = 'green';
+        $this->color = '#31CE36';
     }
     public function handleUserInactive()
     {
@@ -32,7 +32,7 @@ class Online extends Component
     public function handleUserActive()
     {
         $this->statusMessage = 'Active';
-        $this->color = 'green';
+        $this->color = '#31CE36';
     }
 
     public function handleUserAway()

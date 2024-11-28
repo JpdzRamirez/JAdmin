@@ -24,12 +24,12 @@ class StorePosRegisterRequest extends FormRequest
     public function rules(): array
     {   
         //Reglas de validación para actualización de datos pos-registro
-        return [
-            'photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
+        return [            
             'country' => ['required', 'string', 'max:255'], 
             'state' => ['required', 'string', 'max:255'], 
             'city' => ['required', 'string', 'max:255'], 
             'country_born' => ['required', 'string', 'max:255'], 
+            'date_born' => ['required','date_format:d-m-Y'],
             'address' => ['required', 'string', 'max:500'],
             'address_complement' => ['nullable', 'string', 'max:500'],            
         ];

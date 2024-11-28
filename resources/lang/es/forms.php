@@ -2,7 +2,10 @@
 
 return [
     'profile' => 'Formulario de actualización de datos.',
-
+    'form.submit-error-500'=> 'Error de Integración',
+    // Buttons form
+    'form.button-cancel'=> 'Cancelar',
+    'form.button-submit'=> 'Enviar',
     // Register form
     'register.name'=> 'Nombres',
     'register.lastname'=> 'Apellidos',
@@ -17,6 +20,8 @@ return [
     'register.address_complement'=> 'Dirección complementaria',
     'register.location'=> 'Lugar de Residencia',
     'register.location-born'=> 'Lugar de Nacimiento',
+
+    'register.pos-register-success'=> '¡Datos actualizados exitosamente!',
     // Location Component
     'register.label-country' => 'País de Residencia',
     'register.label-state' => 'Departamento de Residencia',

@@ -39,6 +39,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'city',
         'address',
         'address_complement',
+        'date_born',
         'current_team_id',
         'image_base64',
     ];
@@ -74,6 +75,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'date_born' => 'date',
         ];
     }
 

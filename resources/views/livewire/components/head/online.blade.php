@@ -1,6 +1,6 @@
 <div>
     <span
-    class="nav-link"
+    class="nav-link d-flex flex-column p-0"
     data-bs-toggle="dropdown"
     href="#"
     aria-expanded="false"

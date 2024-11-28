@@ -31,21 +31,7 @@
                     <h2 style="text-align: center">{!! __('navigation.pos-register.sub-title', ['name' => Auth::user()->name]) !!}</h2>
                     <div class="card-category">
                         <span>{{ __('navigation.pos-register.span') }}</span>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="alert alert-danger">
-                            <ul>
-                                @if ($errors->any())
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                @elseif (session('success'))
-                                    <li>{{ session('success') }}</li>
-                                @endif
-        
-                            </ul>
-                        </div>
-                    </div>
+                    </div>  
                 </div>
                 <div class="card-body">
                     {{-- Name --}}
@@ -90,9 +76,34 @@
                         </div>
                     </div>
                     <hr>
-                    {{-- FORM New Inputs --}}
-                    <form action="" method="post">
-                      @csrf
+                    {{-- Display Errors --}}
+                    <div class="row mb-3">
+                        @if ($errors->any())                        
+                        <div class="alert alert-danger shake-horizontal">
+                            <ul>                                
+                                @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                @endforeach                                                               
+                            </ul>
+                        </div>
+                        @endif
+                        @if (session('success'))
+                        <div class="alert alert-success">
+                            <ul> 
+                                <li>{{ session('success') }}</li>   
+                            </ul>    
+                        </div>                                
+                        @endif
+                        @if (session('error'))
+                        <div class="alert alert-warning">
+                            <ul> 
+                                <li>{{ session('error') }}</li>   
+                            </ul>    
+                        </div>                                
+                        @endif
+                    </div>  
+                    {{-- FORM New Inputs --}}                    
+                    <form wire:submit.prevent="save">                  
                       <div class="row mb-3">
                         <div class="col-sm-3">
                             <label for="phone" class="mb-0 label-required">Foto de Perfil:</label>
@@ -115,7 +126,7 @@
                                 accept=".jpg,.jpeg,.png" />
                         </div>
                       </div>
-
+                        <hr>
                         <div class="row mb-3">
                           <div class="col-sm-3">
                               <label for="phone" class="mb-0 label-required">{{ __('forms.register.location') }}:</label>
@@ -136,11 +147,11 @@
                         <div class="row mb-3">
                             <div class="col-sm-3">
                                 <label class="mb-3 form-label label-required" id="labelStartDateSingle"
-                                    for="born_date">{{ __('forms.register.date-born') }}</label>
+                                    for="date_born">{{ __('forms.register.date-born') }}</label>
                             </div>
                             <div class="col-sm-9 container-datePicker input-group date" style="width: inherit" id="dateSingleInput">
-                                    <input type="text" name="born_date" id="born_date" class="form-control" placeholder=""
-                                        value="">
+                                    <input type="text" name="date_born" id="date_born" class="form-control" placeholder=""
+                                         wire:model="date_born">
                                     <div class="input-group-addon input-group-text">
                                         <span class="glyphicon glyphicon-th"></span>
                                         <span class="fa fa-calendar" id="fa-1"></span>
@@ -152,7 +163,7 @@
                                 <label for="address" class="mb-0 label-required">{{ __('forms.register.address') }}:</label>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <textarea type="text" rows="1" class="form-control" id="address" 
+                                <textarea type="text" rows="1" class="form-control" id="address" wire:model="address"
                                     value=""></textarea>
                             </div>
                         </div>
@@ -161,12 +172,57 @@
                                 <label for="address_complement" class="mb-0 label-required">{{ __('forms.register.address_complement') }}:</label>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <textarea type="text" rows="1" class="form-control" id="address_complement" 
+                                <textarea type="text" rows="1" class="form-control" id="address_complement"  wire:model="address_complement"
                                     value=""></textarea>
                             </div>
                         </div>
+                        <div class="card-action d-flex justify-content-center">
+                            <div x-data="{
+                                updating: false,
+                                success: false,
+                                error: false,
+                                startProcess() {                                
+                                    this.updating = true;
+                                    this.success = false;
+                                    this.error = false;
+                                    // Inicia el proceso de Livewire
+                                    @this.call('save');
+                                },
+                                restoreButton() {
+                                    this.updating = false;
+                                    this.success = false;
+                                    this.error = false;
+                                },
+                                init() {
+                                    // Escuchar el evento 'processCompleted' emitido desde Livewire
+                                    @this.on('processCompleted', (status) => {                                    
+                                        if (status[0] === 'success') {
+                                            this.updating = false;
+                                            this.success = true;
+                                        } else if (status[0] === 'error') {
+                                            this.error = true;
+                                            this.updating = false;
+                                        }
+                                        // Restaurar el estado del botón después de 2 segundos
+                                        setTimeout(() => {                                            
+                                            this.restoreButton();
+                                        }, 3000);
+                                    });
+                                }
+                            }" x-init="init()">
+                                <button :class="updating ? 'btn btn-warning' : (success ? 'btn btn-success' : (error ? 'btn btn-danger' : 'btn btn-primary'))"
+                                        @click="startProcess">
+                                    <span class="btn-label">
+                                        <span x-show="updating" x-html="'<i class=\'fa fa-exclamation-circle\'></i> Updating...'"></span>
+                                        <span x-show="success" x-html="'<i class=\'fa fa-check\'></i> Success'"></span>
+                                        <span x-show="error" x-html="'<i class=\'fa fa-times\'></i> Failed'"></span>
+                                        <span x-show="!(updating || success || error)" x-html="'<i class=\'fa fa-archive\'></i> Enviar'"></span>
+                                    </span>
+                                </button>
+                            </div>
+                                     
                     </form>
-
+                    </div>
                 </div>
             </div>
             {{-- Si está autenticado, verificado mail, con pos-registro y pendiente de asignación de rol --}}
@@ -176,4 +232,8 @@
 </div>
 @push('dashboardScripts')
 <script src="{{ asset('assets/js/datepicker.js') }}"></script>
+<!-- Añadimos el control Alpine.js -->
+<script>
+
+</script>
 @endpush

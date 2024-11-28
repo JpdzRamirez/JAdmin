@@ -34780,7 +34780,8 @@ body[data-background-color=dark2] .jvm-zoom-btn {
 }
 
 .alert-info {
-  border-left: 4px solid #48abf7;
+  border-left: 1em solid #48abf7;
+  background-color: #9bcdf3;
 }
 
 .alert-info [data-notify=icon]:before {
@@ -34788,7 +34789,8 @@ body[data-background-color=dark2] .jvm-zoom-btn {
 }
 
 .alert-success {
-  border-left: 4px solid #31ce36;
+  border-left: 1em solid #31ce36;
+  background-color: #a5f7a8;
 }
 
 .alert-success [data-notify=icon]:before {
@@ -34796,7 +34798,8 @@ body[data-background-color=dark2] .jvm-zoom-btn {
 }
 
 .alert-warning {
-  border-left: 4px solid #ffad46;
+  border-left: 1em solid #ffad46;
+  background-color: #ffdbae;
 }
 
 .alert-warning [data-notify=icon]:before {
@@ -34804,7 +34807,8 @@ body[data-background-color=dark2] .jvm-zoom-btn {
 }
 
 .alert-danger {
-  border-left: 4px solid #f25961;
+  border-left: 1em solid #f25961;
+  background-color: #f5d5d5;
 }
 
 .alert-danger [data-notify=icon]:before {
@@ -34829,6 +34833,32 @@ body[data-background-color=dark2] .jvm-zoom-btn {
   height: 20px;
 }
 
+.shake-horizontal {
+  animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+}
+
+/**
+ * ----------------------------------------
+ * animation shake-horizontal
+ * ----------------------------------------
+ */
+@keyframes shake-horizontal {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70% {
+    transform: translateX(-10px);
+  }
+  20%, 40%, 60% {
+    transform: translateX(10px);
+  }
+  80% {
+    transform: translateX(8px);
+  }
+  90% {
+    transform: translateX(-8px);
+  }
+}
 body[data-background-color=dark] .demo-icon .icon-preview {
   color: #969696;
 }
@@ -35542,22 +35572,9 @@ body[data-background-color=dark] .demo-icon .icon-class {
 }
 
 :root {
-  --online-color: #80ff80; /* Verde */
+  --online-color: #31CE36; /* Verde */
 }
-@keyframes bubble-pulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.75;
-  }
-  25% {
-    transform: scale(1);
-    opacity: 0.75;
-  }
-  100% {
-    transform: scale(2.5);
-    opacity: 0;
-  }
-}
+
 /*Center-div (Not part of the symbol)*/
 .bubble {
   display: block;
@@ -35565,7 +35582,7 @@ body[data-background-color=dark] .demo-icon .icon-class {
   cursor: pointer;
 }
 .bubble:hover:after {
-  background-color: var(--away-color);
+  animation-play-state: paused;
 }
 .bubble:after {
   content: "";
@@ -35621,7 +35638,20 @@ body[data-background-color=dark] .demo-icon .icon-class {
   width: 14px;
   height: 14px;
 }
-
+@keyframes bubble-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.75;
+  }
+  25% {
+    transform: scale(1);
+    opacity: 0.75;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
 /*     Chart Circle    */
 .chart-circle {
   display: flex;
