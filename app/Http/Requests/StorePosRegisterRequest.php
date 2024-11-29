@@ -25,6 +25,9 @@ class StorePosRegisterRequest extends FormRequest
     {   
         //Reglas de validación para actualización de datos pos-registro
         return [            
+            'study' => ['nullable','string','max:255'],
+            'card' => ['required','string','max:20','unique:complementary_data,card'],
+            'company_id' => ['nullable','string','max:20'],
             'country' => ['required', 'string', 'max:255'], 
             'state' => ['required', 'string', 'max:255'], 
             'city' => ['required', 'string', 'max:255'], 

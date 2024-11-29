@@ -8,24 +8,15 @@ use Illuminate\Support\Facades\Auth;
 
 class DropdownProfile extends Component
 {
-
-    public $name;
-    public $email;
-    
-    public $rol;
-
+    public $user;
     protected $listeners = [
         'userProfileUpdated' => 'updateDropdownInfo'
     ];
 
-
     // Inicialización de las variables al montar el componente
     public function mount()
     {
-        $user = Auth::user();
-        $this->name = $user->name;
-        $this->email = $user->email;
-        $this->rol = $user->roles->name;
+        $this->user = Auth::user();
     }
     public function logout()
     {
@@ -36,13 +27,14 @@ class DropdownProfile extends Component
     
         return redirect('/'); // Redirecciona al usuario a la página de inicio
     }
-    public function updateDropdownInfo($name, $email)
+    public function updateDropdownInfo()
     {
-        $this->name = $name;
-        $this->email = $email;
+        $this->user=Auth::user()->refresh();
     }
     public function render()
     {
-        return view('livewire.components.head.dropdown-profile');
+        return view('livewire.components.head.dropdown-profile', [
+            'user' => $this->user,
+        ]);
     }
 }

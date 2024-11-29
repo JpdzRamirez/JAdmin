@@ -20,7 +20,11 @@ class User extends Authenticatable implements MustVerifyEmail
     use Notifiable;
     use TwoFactorAuthenticatable;
 
-    protected $with = ['roles'];
+    /**
+     * 
+     * @var array
+     */
+    protected $with = ['roles','complementary_data'];
 
     /**
      * The attributes that are mass assignable.
@@ -42,6 +46,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'date_born',
         'current_team_id',
         'image_base64',
+        'pos_register',
     ];
 
     /**
@@ -78,17 +83,58 @@ class User extends Authenticatable implements MustVerifyEmail
             'date_born' => 'date',
         ];
     }
-
+    /*💱💱💱💱
+    *************************************
+    ----------------MUTATORS-------------
+    *************************************
+     */
+    /**
+     * 
+     * @param mixed $value
+     * @return void
+     */
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = ucwords(strtolower($value)); // Convierte la primera letra de cada palabra a mayúscula
+    }
+    /**
+     * 
+     * @param mixed $value
+     * @return void
+     */
+    public function setLastnameAttribute($value)
+    {
+        $this->attributes['lastname'] = ucwords(strtolower($value)); // Convierte la primera letra de cada palabra a mayúscula
+    }
+    /**
+     * Summary of hasRole
+     * @param int $role
+     * @return bool
+     */
     public function hasRole(Int $role)
     {
         return $this->role === $role; 
     }
-
+    /**
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function roles(){
         return $this->belongsTo(Roles::class, 'role');
     }
+    /**
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function complementary_data()
+    {
+        return $this->hasOne(Complementary_Data::class, 'user_id');
+    }
 
-    // To redirect our customverifyEmail
+    /**
+     * Summary of sendEmailVerificationNotification
+     * @return void
+     */
     public function sendEmailVerificationNotification()
     {
         $this->notify(new CustomVerifyEmail());

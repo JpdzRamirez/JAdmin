@@ -6,6 +6,7 @@ use App\Http\Requests\StorePosRegisterRequest;
 
 use App\Contracts\UserRepositoryInterface;
 use App\Contracts\CastServiceInterface;
+use App\Contracts\Complementary_DataRepositoryInterface;
 
 use Illuminate\Validation\ValidationException;
 
@@ -20,7 +21,11 @@ use Livewire\WithFileUploads;
 class Unauthorized extends Component
 {   
     use WithFileUploads;
-    public $pos_register=true;
+    public $pos_register=1;
+    public $study;
+    public $study_options=[];
+    public $card;
+    public $company_id;
     public $photo;
     public $description;
     public $country;
@@ -30,8 +35,9 @@ class Unauthorized extends Component
     public $address;
     public $address_complement;
     public $date_born;
-    protected $userRepository;
+    protected UserRepositoryInterface $userRepository;
     protected CastServiceInterface $castService;
+    protected Complementary_DataRepositoryInterface $complementary_DataRepository;
 
     protected $listeners = [
         "bindingLocation"=> "updateLocation",
@@ -43,9 +49,20 @@ class Unauthorized extends Component
     -------------------Life Hooks--------------
     *************************************************
     */
-    public function mount(UserRepositoryInterface $userRepository, CastServiceInterface $castService){
+    public function mount(UserRepositoryInterface $userRepository,
+     CastServiceInterface $castService,
+     Complementary_DataRepositoryInterface $complementary_DataRepository)
+     {
         $this->userRepository = $userRepository;
         $this->castService = $castService;
+        $this->complementary_DataRepository=$complementary_DataRepository;
+        // Carga las opciones desde el archivo de idioma
+        $this->study_options = [
+            'option-one' => __('forms.register.study.option-one'),
+            'option-two' => __('forms.register.study.option-two'),
+            'option-three' => __('forms.register.study.option-three'),
+            'option-four' => __('forms.register.study.option-four'),
+        ];
     }
 
     /* 📏📐
@@ -62,7 +79,10 @@ class Unauthorized extends Component
     -------------------Functions---------------------
     *************************************************
     */
-    public function save(UserRepositoryInterface $userRepository,CastServiceInterface $castService)
+    public function save(
+        UserRepositoryInterface $userRepository,
+        CastServiceInterface $castService,
+        Complementary_DataRepositoryInterface $complementary_DataRepository)
     {   
         try {
 
@@ -71,22 +91,41 @@ class Unauthorized extends Component
         // Inicializamos inyección de dependencias
         $this->castService = $castService;
         $this->userRepository=$userRepository;
+        $this->complementary_DataRepository=$complementary_DataRepository;
         // Ejecutar las reglas de validación desde StorePosRegisterRequest
         $validatedData = $this->validate();
 
         if($this->photo){
             $validatedData['image_base64'] = $this->photo;
         }
+
         // Casteo de fecha
         $validatedData['date_born']=$this->castService->formatDate($validatedData['date_born'],'d-m-y');
-        
+        // Actualizamos estado de pos-registro
+        $validatedData['pos_register']=$this->pos_register;
+
         // Usar la interfaz de el repositorio para actualizar campos
         $this->userRepository->update($userId, $validatedData);
 
-        sleep(2); // Proceso simulado
+        // Crear el array con los datos complementarios
+        $data = [
+            'study' => $this->study,
+            'card' => $this->card,
+            'company_id' => $this->company_id,            
+            'user_id' => $userId,
+        ];
+        // Cargar la información complementaria
+        $this->complementary_DataRepository->create($data);
         
         $this->dispatch('processCompleted', 'success');
+        $this->dispatch('userProfileUpdated')->to('components.head.dropdownprofile');
 
+        // Proceso simulado        
+        sleep(2); 
+
+        // Asegúrate de que los datos estén sincronizados
+        Auth::user()->refresh();
+        
         session()->flash('success', __('forms.register.pos-register-success'));
          
         } catch (ValidationException $exception) {

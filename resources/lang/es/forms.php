@@ -15,6 +15,21 @@ return [
     'register.password-confirm'=> 'Confirmar Contraseña',
 
     // Pos Register
+    'register.study'=> 'Ultimo estudio alcanzado:',
+    'register.study-placeholder'=> 'Seleccione una opción: Bachillerato, Técnica, Tecnología, Profesional',
+    'register' => [
+        'study' => [
+            'option-one' => 'Bachillerato',
+            'option-two' => 'Técnico',
+            'option-three' => 'Tecnólogo',
+            'option-four' => 'Profesional',
+        ],
+    ],
+    'register.card'=> 'Numero de Identificación',
+    'register.card-placeholder'=> 'C.C / T.I',
+    'register.company-id'=> 'ID de la Empresa:',
+    'register.company-id-small'=> 'Opcional: Ingresa el codigo de la empresa',
+    'register.company-id-placeholder'=> 'En el caso de venir por parte de empresa ingresarlo',
     'register.description'=> 'Brindanos una descripción tuya:',
     'register.description-placeholder'=> '¿Quién eres?, ¿A que te dedicas?, Gustos',
     'register.date-born'=> 'Fecha de Nacimiento',
@@ -24,6 +39,8 @@ return [
     'register.location-born'=> 'Lugar de Nacimiento',
 
     'register.pos-register-success'=> '¡Datos actualizados exitosamente!',
+    'register.pos-register-ok'=> 'Ya has actualizado los datos complementarios',
+    'register.pos-register-ok-message'=> 'Muchas gracias :name <br> Por Favor espera a que tu medico te asigne las pruebas',
     // Location Component
     'register.label-country' => 'País de Residencia',
     'register.label-state' => 'Departamento de Residencia',

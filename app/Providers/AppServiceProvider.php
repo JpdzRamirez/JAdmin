@@ -5,11 +5,12 @@ namespace App\Providers;
 use App\Contracts\UserRepositoryInterface;
 
 use App\Repositories\UserRepository;
+use App\Repositories\Complementary_DataRepository;
 use App\Notifications\CustomVerifyEmail;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Auth\Notifications\VerifyEmail;
 
-
+use App\Contracts\Complementary_DataRepositoryInterface;
 use App\Contracts\CountryServiceInterface;
 use App\Contracts\StateServiceInterface;
 use App\Contracts\CityServiceInterface;
@@ -31,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
         // Registrar las interfaces con su implementación
         //Builder Interfaces
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
+        $this->app->bind(Complementary_DataRepositoryInterface::class, Complementary_DataRepository::class);
 
         //Form API Interfaces
         $this->app->bind(CountryServiceInterface::class, LocationService::class);
