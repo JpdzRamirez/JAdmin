@@ -9,6 +9,6 @@
             // Esperar a que termine la animación antes de eliminarlo
             setTimeout(() => {
                 preloader.remove();
-              }, 1000);
+              }, 1500);
         });
     }

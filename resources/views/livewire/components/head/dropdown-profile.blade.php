@@ -3,10 +3,14 @@
     <li class="nav-item topbar-user dropdown hidden-caret">
         <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#" aria-expanded="false">
             <div class="avatar-sm">
-                <img src="{{$user->image_base64}}" alt="Profile Photo" class="avatar-img rounded-circle" />
+                @if ($user->image_base64 == null)
+                    <img src="{{ asset('assets/img/profile.jpg') }}" alt="Profile Photo" class="avatar-img rounded-circle" />                    
+                @else
+                    <img src="{{$user->image_base64}}" alt="Profile Photo" class="avatar-img rounded-circle" />
+                @endif
             </div>
             <span class="profile-username">
-                <span class="op-7">{{ __('general.welcome') }},</span>
+                <span class="op-7">{{ __('general.welcome') }},</span>                
                 <span class="fw-bold">{{ $user->name . ' '. $user->lastname}}</span>
             </span>
         </a>
@@ -15,7 +19,11 @@
                 <li>
                     <div class="user-box">
                         <div class="avatar-lg">
-                            <img src="{{ $user->image_base64 }}" alt="image profile" class="avatar-img rounded" />
+                            @if ($user->image_base64 == null)
+                                <img src="{{ asset('assets/img/profile.jpg') }}" alt="image profile" class="avatar-img rounded" />
+                            @else
+                                <img src="{{ $user->image_base64 }}" alt="image profile" class="avatar-img rounded" />
+                            @endif                            
                         </div>
                         <div class="u-text">
                             <h4>{{ $user->roles->name }}</h4>
