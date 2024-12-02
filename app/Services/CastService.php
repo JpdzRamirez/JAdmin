@@ -35,7 +35,9 @@ class CastService implements CastServiceInterface
             case 'd-m-y':
                 $dateObject = Carbon::createFromFormat('d-m-Y', $date);
                 break;
-
+            case 'y-m-d':
+                $dateObject = Carbon::createFromFormat('Y-m-d', $date);
+                break;
             default:
                 // Registrar en log el tipo no reconocido
                 Log::warning("Tipo de fomrato no reconocido: {$format}");

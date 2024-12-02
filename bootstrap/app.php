@@ -4,6 +4,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 use App\Exceptions\CurlRequestException;
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -23,12 +25,12 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withExceptions(function (Exceptions $exceptions) {
         $redirected=false;
         $exceptions->render(function (\Throwable $exception) { // Asegúrate de usar \Throwable            
-            // Verificar si hay una ModelNotFoundException anterior
-            // if ($exception->getPrevious() instanceof ModelNotFoundException) {
-            //     return response()->view('pages.errors.404', [
-            //         'message' => $exception->getMessage(),
-            //     ], 404);
-            // }
+            //Verificar si hay una ModelNotFoundException anterior
+            if ($exception->getPrevious() instanceof ModelNotFoundException) {
+                return response()->view('pages.errors.404', [
+                    'message' => $exception->getMessage(),
+                ], 404);
+            }
             if ($exception->getPrevious() instanceof CurlRequestException) {
                 return response()->view('pages.errors.500-curl', [
                     'message' => $exception->getMessage(),

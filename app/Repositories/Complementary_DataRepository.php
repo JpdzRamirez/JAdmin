@@ -39,7 +39,7 @@ class Complementary_DataRepository implements Complementary_DataRepositoryInterf
 
     public function update($id, array $data)
     {
-        $complementary_data = $this->model->findOrFail($id);
+        $complementary_data = $this->model->where('user_id', $id)->firstOrFail();
         $complementary_data->update($data);
         return $complementary_data;
     }

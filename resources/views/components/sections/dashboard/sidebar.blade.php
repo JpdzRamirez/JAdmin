@@ -49,12 +49,14 @@
                   </ul>
                 </div>
               </li>
+              @if(auth()->user()->role!=1 )
               <li class="nav-section">
                 <span class="sidebar-mini-icon">
                   <i class="fa fa-ellipsis-h"></i>
                 </span>
                 <h4 class="text-section">Herramientas</h4>
               </li>
+              @if(auth()->user()->role=2 || auth()->user()->role=3)
               <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#base">
                   <i class="fas fa-layer-group"></i>
@@ -86,6 +88,7 @@
                   </ul>
                 </div>
               </li>
+              @endif
               <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#charts">
                   <i class="far fa-chart-bar"></i>
@@ -94,11 +97,13 @@
                 </a>
                 <div class="collapse" id="charts">
                   <ul class="nav nav-collapse">
+                    @if(auth()->user()->role=2 || auth()->user()->role=3)
                     <li>
                       <a href="charts/charts.html">
                         <span class="sub-item">Administrar Citas</span>
                       </a>
                     </li>
+                    @endif
                     <li>
                       <a href="charts/sparkline.html">
                         <span class="sub-item">Citas</span>
@@ -209,6 +214,7 @@
                   </ul>
                 </div>
               </li>
+              @endif
             </ul>
           </div>
         </div>

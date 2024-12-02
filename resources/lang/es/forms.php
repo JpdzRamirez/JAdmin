@@ -14,6 +14,8 @@ return [
     'register.password'=> 'Contraseña',
     'register.password-confirm'=> 'Confirmar Contraseña',
 
+    // Profile form
+    'profile-success'=> '¡Datos actualizados exitosamente!',
     // Pos Register
     'register.study'=> 'Ultimo estudio alcanzado:',
     'register.study-placeholder'=> 'Seleccione una opción: Bachillerato, Técnica, Tecnología, Profesional',

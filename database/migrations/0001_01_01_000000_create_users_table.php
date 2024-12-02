@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone', 15);
             $table->string('country', 50)->nullable();
+            $table->string('country_born', 50)->nullable();
             $table->string('state', 50)->nullable();
             $table->string('city', 50)->nullable();
             $table->text('address')->nullable();

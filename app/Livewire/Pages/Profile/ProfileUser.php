@@ -1,26 +1,30 @@
 <?php
 
-namespace App\Livewire\Pages;
+namespace App\Livewire\Pages\Profile;
 
-use App\Http\Requests\StorePosRegisterRequest;
+use App\Http\Requests\UpdateProfileUserRequest;
 
 use App\Contracts\UserRepositoryInterface;
 use App\Contracts\CastServiceInterface;
 use App\Contracts\Complementary_DataRepositoryInterface;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
-
 use Exception;
-
-use Illuminate\Support\Facades\Auth;
 
 use Livewire\Component;
 
+
+use Illuminate\Support\Facades\Auth;
+
 use Livewire\WithFileUploads;
 
-class Unauthorized extends Component
-{   
+class ProfileUser extends Component
+{
     use WithFileUploads;
+    
+    public $userID; 
+    public $user;
     public $pos_register=1;
     public $study;
     public $study_options=[];
@@ -44,50 +48,78 @@ class Unauthorized extends Component
         "bindingCountryBorn"=> "updateCountryBorn",
         "bindingDateBorn"=>"updateDateBorn",
     ];
-    /* 💓 
-    *************************************************
-    -------------------Life Hooks--------------
-    *************************************************
-    */
-    public function mount(UserRepositoryInterface $userRepository,
-     CastServiceInterface $castService,
-     Complementary_DataRepositoryInterface $complementary_DataRepository)
-     {
-        $this->userRepository = $userRepository;
-        $this->castService = $castService;
-        $this->complementary_DataRepository=$complementary_DataRepository;
-        // Carga las opciones desde el archivo de idioma
-        $this->study_options = [
-            'option-one' => __('forms.register.study.option-one'),
-            'option-two' => __('forms.register.study.option-two'),
-            'option-three' => __('forms.register.study.option-three'),
-            'option-four' => __('forms.register.study.option-four'),
-        ];
-    }
 
-    /* 📏📐
+        /* 📏📐
     *************************************************
     -------------------Validation Rules--------------
     *************************************************
     */
     protected function rules()
     {
-        return (new StorePosRegisterRequest)->rules();
+        return (new UpdateProfileUserRequest)->rules();
     }
-    /* 🎛️🤖
+    public function mount($userID = null,UserRepositoryInterface $userRepository,
+    CastServiceInterface $castService,
+    Complementary_DataRepositoryInterface $complementary_DataRepository)
+    {
+       // Inicializamos instancias y cargamos el usuario       
+       $this->userRepository = $userRepository;
+       $this->castService = $castService;
+       $this->complementary_DataRepository=$complementary_DataRepository;
+       // Carga las opciones desde el archivo de idioma
+       $this->study_options = [
+           'option-one' => __('forms.register.study.option-one'),
+           'option-two' => __('forms.register.study.option-two'),
+           'option-three' => __('forms.register.study.option-three'),
+           'option-four' => __('forms.register.study.option-four'),
+       ];
+       if($userID){
+        try {
+            // Recuperamos el usuario
+            $this->user=$this->userRepository->find(Auth::user()->id);
+
+            if($this->user){
+                    // Cargamos los datos de las variables
+                    foreach ($this->user->getAttributes() as $key => $value) {
+                        if (property_exists($this, $key)) {
+                            $this->{$key} = $value;
+                        }
+                    }   
+                    // Cargamos la foto 
+                    $this->photo=$this->user->image_base64;
+                    // Cargamos la data de la relación  
+                    $this->loadComplementaryData();            
+            }
+            } catch (ModelNotFoundException $e) {
+                    // Manejo si no se encuentra la presentación
+                    throw new ModelNotFoundException(" ID Busqueda: $userID" . " " . __('exceptions.not-found'));
+            }
+       }
+   }
+
+   /* 🎛️🤖
     *************************************************
     -------------------Functions---------------------
     *************************************************
     */
+    
+    protected function loadComplementaryData()
+    {
+        if ($this->user->relationLoaded('complementary_data') && $this->user->complementary_data) {
+            $this->study = $this->user->complementary_data->study ?? null;
+            $this->card = $this->user->complementary_data->card ?? null;
+            $this->company_id = $this->user->complementary_data->company_id ?? null;
+        }
+    }
     public function save(
         UserRepositoryInterface $userRepository,
         CastServiceInterface $castService,
         Complementary_DataRepositoryInterface $complementary_DataRepository)
     {   
-        try {
+    try {
 
         // Obtener el ID del usuario autenticado
-        $userId = Auth::user()->id;
+        $userId = $this->user->id;
         // Inicializamos inyección de dependencias
         $this->castService = $castService;
         $this->userRepository=$userRepository;
@@ -100,7 +132,7 @@ class Unauthorized extends Component
         }
 
         // Casteo de fecha
-        $validatedData['date_born']=$this->castService->formatDate($validatedData['date_born'],'d-m-y');
+        $validatedData['date_born']=$this->castService->formatDate($validatedData['date_born'],'y-m-d');
         // Actualizamos estado de pos-registro
         $validatedData['pos_register']=$this->pos_register;
 
@@ -111,11 +143,10 @@ class Unauthorized extends Component
         $data = [
             'study' => $this->study,
             'card' => $this->card,
-            'company_id' => $this->company_id,            
-            'user_id' => $userId,
+            'company_id' => $this->company_id,                        
         ];
         // Cargar la información complementaria
-        $this->complementary_DataRepository->create($data);
+        $this->complementary_DataRepository->update($userId,$data);
         
         $this->dispatch('processCompleted', 'success');
         $this->dispatch('userProfileUpdated')->to('components.head.dropdown-profile');
@@ -123,10 +154,9 @@ class Unauthorized extends Component
         // Proceso simulado        
         sleep(2); 
 
-        // Asegúrate de que los datos estén sincronizados
-        Auth::user()->refresh();
+        // Asegúrate de que los datos estén sincronizados        
         
-        session()->flash('success', __('forms.register.pos-register-success'));
+        session()->flash('success', __('forms.profile-success'));
          
         } catch (ValidationException $exception) {
             // Captura errores de validación y los maneja según sea necesario              
@@ -141,7 +171,7 @@ class Unauthorized extends Component
             $this->dispatch('processCompleted', 'error');
         }
     }
-    /* 🧑‍🦰Profile Photo
+        /* 🧑‍🦰Profile Photo
     *************************************************
     ---------------Events Update---------------------
     **************************************************
@@ -173,6 +203,6 @@ class Unauthorized extends Component
     }
     public function render()
     {
-        return view('livewire.pages.unauthorized');
+        return view('livewire.pages.profile.profile-user');
     }
 }

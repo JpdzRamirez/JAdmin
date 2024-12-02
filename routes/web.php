@@ -101,6 +101,14 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         })->name('pos-register.dashboard');
     });
 
+    /*
+     No obstante los usuarios admin pueden modificar otros perfiles
+     Todo usuario registrado y autenticado puede ver y modificar su propio perfil
+    */
+    Route::get('/profile/{userID}', function ($userID) {
+        return view('pages.profile.profile-user', ['userID' => $userID]);
+    })->name('profile');
+
 });
 /*🔐✅
 **********************************************************
@@ -136,10 +144,13 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
             return view('pages.main-dashboard');
         })->name('customer.dashboard');
     });
-    // Rutas main default 
+
+    // Rutas main default  accesibles a todos los usuarios
     Route::get('/dashboard', function () {
         return view('pages.main-dashboard');
     })->name('main.dashboard');
+
+
     // Otras rutas que pueden estar protegidas por autenticación
     // Aquí puedes agregar más rutas para otros roles o configuraciones.
 });
