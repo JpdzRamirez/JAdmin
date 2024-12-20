@@ -40387,6 +40387,18 @@ label.error {
   -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
+.tbody-column > tr td {
+  text-align: center;
+}
+.tbody-column > tr td .crud-buttons {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.tbody-column > tr td .crud-buttons a {
+  margin: 0 5px;
+}
+
 body[data-background-color=dark] .border-left,
 body[data-background-color=dark] .border-right,
 body[data-background-color=dark] .border-bottom,
@@ -40409,6 +40421,7 @@ body[data-background-color=dark] .border-top {
   padding: 15px;
   background: #282C34;
   position: absolute;
+  top: 100%;
   width: 100%;
 }
 

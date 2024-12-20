@@ -4,6 +4,14 @@ return [
     // Sections
     'nav-form'=> 'Formulario',
     'nav-profile'=> 'Perfil',
+    'nav-users-crud'=> 'Administrar usuarios',
+    // Users-Crud
+    'users-crud.section'=> 'Lista de Usuarios',
+    'users-crud.navigation'=> 'Usuarios',
+    'users-crud.title'=> 'Panel de control de usuarios',
+    'users-crud.sub-title'=> 'Administra los usuarios de la plataforma',
+    'users-crud.span'=> 'Puedes ver, editar y eliminar los usuarios de la plataforma con solo un click 🖱',
+    
     // Profile update form
     'profile.title' => 'Formulario de actualización de datos personales',
     'profile.sub-title' => 'Actualización de datos del pacente :name <br>',

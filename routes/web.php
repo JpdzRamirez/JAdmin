@@ -122,6 +122,12 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
         Route::get('/admin/dashboard', function () {
             return view('pages.main-dashboard');
         })->name('admin.dashboard');
+        Route::get('/users-control', function () {
+            return view('pages.admin.users-crud');
+        })->name('users.crud');
+        Route::get('/user-edit/{id]', function ($id) {
+            return view('pages.admin.user-edit', ['id' => $id]);
+        })->name('user.edit');
     });
 
     // Rutas para usuarios con rol de usuario Doctor (role 3)

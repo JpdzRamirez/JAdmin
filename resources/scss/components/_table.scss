@@ -177,3 +177,20 @@
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: -ms-autohiding-scrollbar;
 }
+
+.tbody-column{
+    &>tr{
+        
+        td{
+            text-align: center;
+            .crud-buttons{
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                a{
+                    margin: 0 5px;
+                }
+            }
+        }
+    }
+}

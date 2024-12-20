@@ -1,6 +1,7 @@
 <?php
 
 return [
+    // Header ZONE
     'profile' => 'Formulario de actualización de datos.',
     'form.submit-error-500'=> 'Error de Integración',
     // Buttons form
