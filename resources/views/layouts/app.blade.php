@@ -54,7 +54,7 @@
     {{-- jQuery Scrollbar --}}
     <script src="{{ asset('assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js') }}"></script>
     {{-- Sweet Alert --}}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{asset('assets/js/plugin/sweetalert/sweetalert.min.js')}}"></script>
     {{-- Bootstrap Notify --}}
     <script src="{{ asset('assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
     {{-- Lottie animations js --}}
@@ -66,6 +66,7 @@
     <!-- Main JS File -->
     <script src="{{ asset('assets/js/preloader.js') }}"></script>
     @stack('dashboardScripts')
+    @stack('scripts')
 </body>
 
 </html>

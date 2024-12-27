@@ -47,22 +47,31 @@
                                     <tr>
                                         <th scope="row">{{$key+1}}</th>
                                         <td>{{$user->name." ".$user->lastname}}</td>
-                                        <td>{{$user->roles->name}}</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <select class="form-select form-control-sm" id="rolSelect" 
+                                                aria-label="Rol Select" data-user-key="{{ $user->id }}">
+                                                    @foreach ($roles as $rol)
+                                                    <option value="{{$rol->id}}" @selected($rol->id == $user->role)>{{$rol->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                              </div>    
+                                        </td>
                                         <td>
                                             @if ($user->active==1)
-                                                <span class="badge badge-success"><i class="fa-solid fa-octagon-check"></i>{{__('tables.users-crud.active')}}</span>                                                
+                                                <span style="font-size:1em;" class="badge badge-success"><i class="fa-solid fa-octagon-check"></i>{{__('tables.users-crud.active')}}</span>                                                
                                             @else
-                                                <span class="badge badge-danger"><i class="fa-solid fa-hexagon-xmark"></i>{{__('tables.users-crud.inactive')}}</span>
+                                                <span style="font-size:1em;" class="badge badge-danger"><i class="fa-solid fa-hexagon-xmark"></i>{{__('tables.users-crud.inactive')}}</span>
                                             @endif
                                         </td>
                                         <td>
                                             @if ($user->pos_register==1)
-                                                <span class="badge badge-success"><i class="fa-solid fa-clipboard-list-check"></i> {{__('tables.users-crud.active')}}</span>                                                
+                                                <span style="font-size:1em;" class="badge badge-success"><i class="fa-solid fa-clipboard-list-check"></i> {{__('tables.users-crud.completed')}}</span>                                                
                                             @else
-                                                <span class="badge badge-danger"><i class="fa-solid fa-hexagon-xmark"></i> {{__('tables.users-crud.inactive')}}</span>
+                                                <span style="font-size:1em;" class="badge badge-danger"><i class="fa-solid fa-hexagon-xmark"></i> {{__('tables.users-crud.uncompleted')}}</span>
                                             @endif
                                         </td>
-                                        <td>{{$user->created_at->toFormattedDateString()}}</td>
+                                        <td><span style="font-size:1em;" class="badge badge-info">{{$user->created_at->toFormattedDateString()}}</span></td>
                                         <td>
                                             <div class="crud-buttons" style="width:fit-content;">
                                                 <a target="_blank" href="{{route('user.edit',$user->id)}}" class="btn btn-primary btn-sm mb-1"><i class="fa-regular fa-user-pen"></i> {{__('tables.users-crud.edit')}}</a>
@@ -78,3 +87,65 @@
             </div>
         </div>
 </div>
+@push('scripts')
+    <script>
+        let rolSelector = $("#rolSelect");
+
+        rolSelector.on('focus', function() {
+            // Guardar el valor inicial cuando el select obtiene el foco.
+            $(this).data('previous-value', $(this).val());
+        });
+
+        rolSelector.on('change', function() {
+
+            let selectedRole = $(this).val(); // Nuevo valor seleccionado
+            let previousRole = $(this).data('previous-value'); // Valor anterior
+            let userKey = $(this).data('user-key'); // Key del usuario
+
+            swal({
+                title: @json(__('tables.users-crud.roles.ask')),
+                text: @json(__('tables.users-crud.roles.text')),
+                icon: "warning",
+                buttons: {
+                    confirm: {
+                        text: @json(__('tables.users-crud.roles.confirm')),
+                        className: "btn btn-success",
+                    },
+                    cancel: {
+                        visible: true,
+                        className: "btn btn-danger",
+                    },
+                },
+            }).then((Delete) => {
+                if (Delete) {
+                    console.log("confirmado");
+                    // Confirmado: enviar el formulario
+                    Livewire.dispatch('updateRole', {
+                        userKey: userKey, 
+                        newRoleId: selectedRole
+                    });
+                    $(this).data('previous-value', selectedRole);
+                } else {
+                    // Cancelado: restaurar el valor anterior
+                    $(this).val(previousRole);
+                    swal.close();
+                }
+            });
+    });
+    // Mensaje de confirmación general
+    document.addEventListener('action-done', function(event) {
+        let message = event.detail[0].message;
+        swal({
+            title: @json(__('tables.users-crud.done')),
+            text: message,
+            icon: "success",
+            buttons: {
+                confirm: {
+                    text: @json(__('tables.users-crud.done')),
+                    className: "btn btn-success",
+                },
+            },
+        });
+    });
+    </script>
+@endpush
